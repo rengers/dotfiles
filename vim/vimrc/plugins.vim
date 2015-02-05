@@ -1,6 +1,6 @@
 " Where all the plugins are specified, using Vundle
 " Initialize vundle!
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 " ----------------------------
 " Plugins, managed by Vundle!
