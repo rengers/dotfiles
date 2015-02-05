@@ -1,3 +1,11 @@
-- clean: []
-- link: {}
-- shell: []
+- clean: ['~', '~/.config']
+- link:
+    ~/.dotfiles: ''
+    ~/.gitconfig: gitconfig
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
+    ~/.zshrc: zshrc
+    ~/.zshrc_ssh_agent: zshrc_ssh_agent
+- shell:
+    - mkdir -p ~/.rtorrent/session ~/.rtorrent/watch ~/.rtorrent/downloads
+    - git submodule update --init --recursive
