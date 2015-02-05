@@ -1,7 +1,7 @@
 " Syntastic:
 map <leader>st :SyntasticToggleMode<cr>
 " Only show errors not warnings
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 
 " Yankring:
