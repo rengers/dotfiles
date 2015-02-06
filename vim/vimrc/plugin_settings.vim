@@ -52,4 +52,7 @@ let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
 
-
+" Powerline:
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_dividers_override = ['', '', '', '']
+let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
