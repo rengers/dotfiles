@@ -7,7 +7,8 @@ autocmd BufReadPost *
       \ endif
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost vimrc source $MYVIMRC
+autocmd! bufwritepost *.vim source $MYVIMRC
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo

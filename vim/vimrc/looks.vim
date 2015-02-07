@@ -35,3 +35,4 @@ python del powerline_setup
 
 " Hide the text below status line
 set noshowmode
+set number

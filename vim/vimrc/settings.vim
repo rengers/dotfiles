@@ -42,7 +42,6 @@ try
 catch
 endtry
 
-set number
 set mouse=a
 
 " Set to auto read when a file is changed from the outside

@@ -52,7 +52,15 @@ let g:bufExplorerFindActive=1
 let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
 
+
 " Powerline:
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_dividers_override = ['', '', '', '']
 let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
+
+
+" GitGutter:
+" Sign Column made by solarized color is strange, clear it.
+highlight clear SignColumn
+" vim-gitgutter will use Sign Column to set its color, reload it.
+call gitgutter#highlight#define_highlights()
