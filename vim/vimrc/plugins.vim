@@ -25,6 +25,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 " File explorer within Vim
 Bundle 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Ultimate Vim statusline utility
 Bundle 'Lokaltog/vim-powerline'
 " Highlights the matching HTML tag
