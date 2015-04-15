@@ -68,7 +68,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 " snipMate
 Bundle 'garbas/vim-snipmate'
