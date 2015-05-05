@@ -36,6 +36,7 @@ brew install git
 brew install jq
 brew install rbenv
 brew install ruby-build
+brew install htop
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
@@ -49,6 +50,7 @@ brew cask install seil
 brew cask install android-file-transfer
 brew cask install growlnotify
 brew cask install iterm2
+brew cask install vlc
 
 #cleanup cask
 brew cask cleanup
