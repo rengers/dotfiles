@@ -12,3 +12,4 @@
     - [./ruby-install.sh, Installing latest ruby with rbenv and ruby-build]
     - [./oh-my-zsh-install.sh, Installing oh-my-zsh]
     - [vim +PluginInstall +qall, Installing Vundle plugins]
+    - [./fonts.sh, Installing Powerline patched fonts]
