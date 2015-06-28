@@ -38,6 +38,7 @@ brew install rbenv
 brew install ruby-build
 brew install htop
 brew install tree
+brew install gpg
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
@@ -53,6 +54,7 @@ brew cask install growlnotify
 brew cask install iterm2
 brew cask install vlc
 brew cask install menumeters
+brew cask install gpgtools
 
 #cleanup cask
 brew cask cleanup
