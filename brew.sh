@@ -33,12 +33,17 @@ brew install mercurial
 brew install ack
 brew install bzr
 brew install git
+brew install tig
+brew install iftop
 brew install jq
 brew install rbenv
 brew install ruby-build
 brew install htop
 brew install tree
 brew install gpg
+brew install pigz
+brew install wget
+brew install aria2
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
@@ -55,6 +60,9 @@ brew cask install iterm2
 brew cask install vlc
 brew cask install menumeters
 brew cask install gpgtools
+brew cask install xquartz
+brew cask install colloquy
+brew cask install skype
 
 #cleanup cask
 brew cask cleanup
