@@ -4,6 +4,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+	pager = less -FMRiX
 [merge]
 	tool = vimdiff
 [color]
@@ -16,5 +17,8 @@
 [alias]
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
 [push]
 	default = matching
+[branch]
+	autosetuprebase = always
