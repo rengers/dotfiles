@@ -7,7 +7,7 @@
     ~/.zshrc: zshrc
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
 - shell:
-    - [./platforms.sh, Determining platform]
+    - [./core_deps.sh, Installing core dependencies]
     - [git submodule update --init --recursive, Updating submodules]
     - [./brew.sh, Installing and updating homebrew packages]
     - [./ruby-install.sh, Installing latest ruby with rbenv and ruby-build]

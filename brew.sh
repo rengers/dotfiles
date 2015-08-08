@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source $HOME/dotfiles/platforms.sh
 is_osx || echo "Not OSX. Skipping brew install" && exit 0
 
 # Install homebrew

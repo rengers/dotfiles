@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Initialize rbenv in shell
+export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
 # Requires both rbenv and ruby-build to be installed
