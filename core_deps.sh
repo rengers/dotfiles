@@ -16,14 +16,14 @@ then
 
   # Java
   echo "Installing Java 1.7"
-  wget http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-i586.rpm
-  rpm -Uvh jdk-7u79-linux-i586.rpm
-  rm jdk-7u79-linux-i586.rpm
+  curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.rpm > jdk-7u79-linux-x64.rpm
+  sudo rpm -Uvh jdk-7u79-linux-i586.rpm
+  rm jdk-7u79-linux-x64.rpm
 
   echo "Installing Java 1.8"
-  wget http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-i586.rpm
-  rpm -Uvh jdk-8u51-linux-i586.rpm
-  rm jdk-8u51-linux-i586.rpm
+  curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-x64.rpm > jdk-8u51-linux-x64.rpm
+  sudo rpm -Uvh jdk-8u51-linux-i586.rpm
+  rm jdk-8u51-linux-x64.rpm
 fi
 
 if is_ubuntu
