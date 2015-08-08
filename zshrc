@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -32,7 +32,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundle gem rails ruby rake virtualenv)
+plugins=(git bundle gem rails ruby rake virtualenv go)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -41,14 +41,20 @@ export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/u
 
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 export PYTHONPATH="$HOME/.local/lib"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
 
-# Load rbenv
-eval "$(rbenv init -)"
+# GOlang
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
-source ~/.zshrc_ssh_agent
+# Load rbenv
+eval "$(rbenv init - zsh)"
+
+# Source any other .zshrc_ files we find
+for f in ~/.zshrc_*; do source $f; done
 
 # Aliases
 alias gs='git status'
