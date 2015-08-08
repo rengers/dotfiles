@@ -2,6 +2,7 @@
 " Initialize vundle!
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
+set nocompatible
 " ----------------------------
 " Plugins, managed by Vundle!
 " ----------------------------

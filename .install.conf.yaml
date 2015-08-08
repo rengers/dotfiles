@@ -12,5 +12,6 @@
     - [./brew.sh, Installing and updating homebrew packages]
     - [./ruby-install.sh, Installing latest ruby with rbenv and ruby-build]
     - [./oh-my-zsh-install.sh, Installing oh-my-zsh]
-    - [vim +PluginInstall +qall, Installing Vundle plugins]
+    - ["git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim", Pull in Vundle]
+    - [vim -u $HOME/.vim/vimrc/plugins.vim +PluginInstall +qall, Installing Vundle plugins]
     - [./fonts.sh, Installing Powerline patched fonts]
