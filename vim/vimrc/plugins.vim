@@ -27,7 +27,8 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Ultimate Vim statusline utility
-Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 " Highlights the matching HTML tag
 Bundle 'gregsexton/MatchTag'
 " Rainbow parentheses!! :)
@@ -103,6 +104,8 @@ Bundle 'tpope/vim-fireplace'
 Bundle 'fatih/vim-go'
 Bundle 'kingbin/vim-arduino'
 Bundle 'sudar/vim-arduino-syntax'
+Bundle 'solarnz/thrift.vim'
+Bundle 'junegunn/vim-easy-align'
 
 " Vim Text Objects
 Bundle 'bkad/CamelCaseMotion'
