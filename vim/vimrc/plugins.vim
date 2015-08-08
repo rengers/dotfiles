@@ -1,8 +1,8 @@
 " Where all the plugins are specified, using Vundle
 " Initialize vundle!
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-set nocompatible
 " ----------------------------
 " Plugins, managed by Vundle!
 " ----------------------------
