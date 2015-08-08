@@ -13,6 +13,17 @@ then
   sudo yum install -y vim
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+  # Java
+  echo "Installing Java 1.7"
+  wget http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-i586.rpm
+  rpm -Uvh jdk-7u79-linux-i586.rpm
+  rm jdk-7u79-linux-i586.rpm
+
+  echo "Installing Java 1.8"
+  wget http://download.oracle.com/otn-pub/java/jdk/8u51-b16/jdk-8u51-linux-i586.rpm
+  rpm -Uvh jdk-8u51-linux-i586.rpm
+  rm jdk-8u51-linux-i586.rpm
 fi
 
 if is_ubuntu
