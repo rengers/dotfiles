@@ -1,8 +1,17 @@
 AGENT_SOCKET=$HOME/.ssh/.ssh-agent-socket
 AGENT_INFO=$HOME/.ssh/.ssh-agent-info
 
-SSH_AGENT_CMD=${SSH_AGENT_CMD:-/usr/local/bin/ssh-agent}
-SSH_ADD_CMD=${SSH_ADD_CMD:-/usr/local/bin/ssh-add}
+if [ -f /usr/local/bin/ssh-agent ]
+then
+  SSH_AGENT_CMD=${SSH_AGENT_CMD:-/usr/local/bin/ssh-agent}
+  SSH_ADD_CMD=${SSH_ADD_CMD:-/usr/local/bin/ssh-add}
+elif [ -f /usr/bin/ssh-agent ]
+then
+  SSH_AGENT_CMD=${SSH_AGENT_CMD:-/usr/bin/ssh-agent}
+  SSH_ADD_CMD=${SSH_ADD_CMD:-/usr/bin/ssh-add}
+else
+  echo "No ssh-agent installed." && exit 1
+fi
 
 if [[ -s "$AGENT_INFO" ]]
 then
