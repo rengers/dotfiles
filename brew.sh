@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+is_osx || (echo "Not OSX. Skipping brew install" && exit 0)
+
 # Install homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
