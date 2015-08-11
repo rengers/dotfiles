@@ -15,6 +15,16 @@ then
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
+  # Add Epel repo
+  if ! (yum repolist | grep epel)
+  then
+    wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    sudo rpm -uVh epel-release-6-8.noarch.rpm
+    rm epel-release-6-8.noarch.rpm
+  fi
+
+  sudo yum install mosh
+
   # Java
   if ! ls /usr/java/jdk1.7*
   then
@@ -43,4 +53,5 @@ then
   while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
   sudo apt-get install python2.7
   sudo apt-get install rbenv
+  sudo apt-get install mosh
 fi
