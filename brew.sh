@@ -54,6 +54,7 @@ brew cask install google-chrome
 brew cask install firefox
 brew cask install alfred
 brew cask install amethyst
+brew cask install bettertouchtool
 brew cask install spotify
 brew cask install adobe-reader
 brew cask install seil
