@@ -31,3 +31,4 @@ autocmd FileType ruby noremap <C-N> :w<CR>:!/usr/bin/env ruby %<CR>
 " \m to run current file in Ruby
 autocmd FileType ruby noremap <Leader>m :w<CR>:!/usr/bin/env ruby -c %<CR>
 let g:haskell_indent_if = 2
+au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
