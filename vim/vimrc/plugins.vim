@@ -83,6 +83,7 @@ Bundle 'scrooloose/snipmate-snippets'
 " Language support
 Bundle 'tpope/vim-rails'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'noprompt/vim-yardoc'
 Bundle 'tpope/vim-haml'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'

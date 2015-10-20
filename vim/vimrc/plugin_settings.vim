@@ -26,6 +26,7 @@ map <leader>u :TMiniBufExplorer<cr>
 
 " CtrlP:
 map <leader>t :CtrlP<CR>
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 
 " NERDTree:
