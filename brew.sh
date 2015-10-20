@@ -47,6 +47,10 @@ brew install gpg
 brew install pigz
 brew install wget
 brew install aria2
+brew install watch
+brew install fasd
+brew install nmap
+brew install ag
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
