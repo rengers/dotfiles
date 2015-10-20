@@ -54,3 +54,6 @@ map <leader>e :e! ~/.vim/vimrc<cr>
 " Undo and redo in insert mode
 inoremap <C-u> <C-o>u
 inoremap <C-y> <C-o><C-R>
+
+"Clipper copy paste
+nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>

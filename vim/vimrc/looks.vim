@@ -9,6 +9,7 @@ set gfn=Monaco\ 9
 set background=dark
 colorscheme solarized
 let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 set t_Co=256
 set nonu
 
