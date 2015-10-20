@@ -47,6 +47,10 @@ brew install gpg
 brew install pigz
 brew install wget
 brew install aria2
+brew install watch
+brew install fasd
+brew install nmap
+brew install ag
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
@@ -54,6 +58,7 @@ brew cask install google-chrome
 brew cask install firefox
 brew cask install alfred
 brew cask install amethyst
+brew cask install bettertouchtool
 brew cask install spotify
 brew cask install adobe-reader
 brew cask install seil

@@ -37,7 +37,7 @@ plugins=(git bundle gem rails ruby rake virtualenv go)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/lib/lightdm/lightdm:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -50,11 +50,13 @@ export LD_LIBRARY_PATH="$HOME/.local/lib"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# Load rbenv
-eval "$(rbenv init - zsh)"
-
 # Source any other .zshrc_ files we find
 for f in ~/.zshrc_*; do source $f; done
+
+PATH=/usr/local/sbin:/usr/local/bin:$PATH
+
+# Load rbenv
+eval "$(rbenv init - zsh)"
 
 # Aliases
 alias gs='git status'

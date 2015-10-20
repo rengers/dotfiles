@@ -1,6 +1,6 @@
 [user]
 	name = Ross Engers
-	email = rossengers@gmail.com
+	email = rengers@amazon.com
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -22,3 +22,6 @@
 	default = simple
 [branch]
 	autosetuprebase = always
+[amazon]
+	append-cr-url = true
+	pull-request-by-default = true

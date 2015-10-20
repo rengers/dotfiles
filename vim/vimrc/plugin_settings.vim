@@ -74,3 +74,6 @@ let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'python', 'java
 
 " Fugitive:
 map <leader>gs :Gstatus<cr>
+
+" YouCompleteMe:
+let g:ycm_filetype_whitelist = { 'go': 1 }
