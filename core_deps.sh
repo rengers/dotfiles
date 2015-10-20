@@ -23,7 +23,8 @@ then
     rm epel-release-6-8.noarch.rpm
   fi
 
-  sudo yum install mosh
+  sudo yum install -y mosh
+  sudo yum install -y tree
 
   # Java
   if ! ls /usr/java/jdk1.7*
