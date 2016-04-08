@@ -72,6 +72,10 @@ Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
 Bundle 'Valloric/YouCompleteMe'
 
+" Preview markdown
+Bundle 'suan/vim-instant-markdown'
+
+
 " snipMate
 Bundle 'garbas/vim-snipmate'
 

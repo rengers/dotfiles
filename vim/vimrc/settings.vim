@@ -66,7 +66,10 @@ set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
 
-set encoding=utf8
+if !has('nvim')
+  set encoding=utf8
+endif
+
 try
     lang en_US
 catch

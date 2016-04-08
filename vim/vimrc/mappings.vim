@@ -18,6 +18,9 @@ map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move btw. windows
+if has('nvim')
+  nmap <BS> <C-W>h
+endif
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -57,3 +60,6 @@ inoremap <C-y> <C-o><C-R>
 
 "Clipper copy paste
 nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
+
+"Tagbar
+nmap <F8> :TagbarToggle<CR>

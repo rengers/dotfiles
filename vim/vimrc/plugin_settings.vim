@@ -77,3 +77,6 @@ map <leader>gs :Gstatus<cr>
 
 " YouCompleteMe:
 let g:ycm_filetype_whitelist = { 'go': 1 }
+
+" VimInstantMarkdown:
+let g:instant_markdown_autostart = 0

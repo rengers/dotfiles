@@ -34,4 +34,8 @@ let g:haskell_indent_if = 2
 
 " Always reset the cursor when editing commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+let go_highlight_functions = 1
+let go_highlight_structs = 1
+au BufWritePost *.go silent! !ctags -R &

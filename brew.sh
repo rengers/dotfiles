@@ -51,6 +51,7 @@ brew install watch
 brew install fasd
 brew install nmap
 brew install ag
+brew install tcptraceroute
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
