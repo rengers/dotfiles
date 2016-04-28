@@ -9,6 +9,11 @@ then
   sudo yum update -y
   sudo yum install -y python26
   sudo yum install -y python27
+  sudo yum install -y python-devel
+  sudo yum install -y ruby-devel
+  sudo yum install -y python27-devel
+  sudo yum install -y ruby19-devel
+  sudo yum install -y golang
   sudo yum install -y git
   sudo yum install -y vim
   sudo yum install -y gcc openssl-devel readline-devel zlib-devel gcc-c++
