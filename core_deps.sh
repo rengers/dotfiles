@@ -16,7 +16,9 @@ then
   sudo yum install -y golang
   sudo yum install -y git
   sudo yum install -y vim
-  sudo yum install -y gcc openssl-devel readline-devel zlib-devel gcc-c++
+  sudo yum install -y gcc gcc-c++
+  sudo yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
+  sudo yum install -y protobuf-compiler protobuf-devel protobuf-compiler
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
