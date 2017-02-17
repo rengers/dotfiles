@@ -50,6 +50,11 @@ export LD_LIBRARY_PATH="$HOME/.local/lib"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# Terraform - Source chtf
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+  source "/usr/local/share/chtf/chtf.sh"
+fi
+
 # Source any other .zshrc_ files we find
 for f in ~/.zshrc_*; do source $f; done
 

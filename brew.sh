@@ -54,6 +54,7 @@ brew install nmap
 brew install ag
 brew install tcptraceroute
 brew install ctags
+brew install chtf
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
