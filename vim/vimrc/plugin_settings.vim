@@ -65,6 +65,8 @@ let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': ''
 highlight clear SignColumn
 " vim-gitgutter will use Sign Column to set its color, reload it.
 call gitgutter#highlight#define_highlights()
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk]
 
 
 " VimMarkdown:

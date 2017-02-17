@@ -32,6 +32,7 @@ brew install homebrew/dupes/screen
 # Install other useful binaries.
 brew install zsh
 brew install python
+brew install go --cross-compile-common
 brew install mercurial
 brew install ack
 brew install bzr
@@ -52,6 +53,7 @@ brew install fasd
 brew install nmap
 brew install ag
 brew install tcptraceroute
+brew install ctags
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask

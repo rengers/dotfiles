@@ -114,6 +114,8 @@ Bundle 'kingbin/vim-arduino'
 Bundle 'sudar/vim-arduino-syntax'
 Bundle 'solarnz/thrift.vim'
 Bundle 'junegunn/vim-easy-align'
+Bundle 'hashivim/vim-terraform'
+Bundle 'rodjek/vim-puppet'
 
 " Vim Text Objects
 Bundle 'bkad/CamelCaseMotion'
