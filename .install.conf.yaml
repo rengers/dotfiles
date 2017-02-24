@@ -2,6 +2,7 @@
 - link:
     ~/.dotfiles: ''
     ~/.gitconfig: gitconfig
+    ~/.ctags: ctags
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
