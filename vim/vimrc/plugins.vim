@@ -116,6 +116,8 @@ Bundle 'solarnz/thrift.vim'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'hashivim/vim-terraform'
 Bundle 'rodjek/vim-puppet'
+Bundle 'empanda/vim-varnish'
+Bundle 'chase/vim-ansible-yaml'
 
 " Vim Text Objects
 Bundle 'bkad/CamelCaseMotion'

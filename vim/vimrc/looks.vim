@@ -38,3 +38,5 @@ let g:airline_powerline_fonts = 1
 " Hide the text below status line
 set noshowmode
 set number
+
+set foldlevel=99

@@ -87,3 +87,5 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+nmap =j :%!python -m json.tool<CR>
