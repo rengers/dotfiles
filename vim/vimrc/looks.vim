@@ -8,10 +8,8 @@ set gfn=Monaco\ 9
 
 set background=dark
 colorscheme solarized
-let g:solarized_termcolors=256
 let g:solarized_termtrans=1
-set t_Co=256
-set nonu
+set number
 
 
 """"""""""""""""""""""""""""""
@@ -20,15 +18,18 @@ set nonu
 " Always hide the statusline
 set laststatus=2
 
-" Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L\ \ \ 
-set statusline+=%= " right align
-set statusline+=%{GitBranch()}\  
+" If we're not using airline
+if !exists('g:airline_powerline_fonts')
+  " Format the statusline
+  set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L\ \ \
+  set statusline+=%= " right align
+  set statusline+=%{GitBranch()}\
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+  "" Syntastic
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+endif
 
 "python from powerline.vim import setup as powerline_setup
 "python powerline_setup()
@@ -37,6 +38,5 @@ let g:airline_powerline_fonts = 1
 
 " Hide the text below status line
 set noshowmode
-set number
 
 set foldlevel=99
