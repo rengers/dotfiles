@@ -70,7 +70,12 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
-Bundle 'Valloric/YouCompleteMe'
+if has('nvim')
+  Bundle 'Shougo/deoplete.nvim'
+  Bundle 'zchee/deoplete-go'
+else
+  Bundle 'Valloric/YouCompleteMe'
+endif
 
 " Preview markdown
 Bundle 'suan/vim-instant-markdown'
@@ -118,6 +123,8 @@ Bundle 'hashivim/vim-terraform'
 Bundle 'rodjek/vim-puppet'
 Bundle 'empanda/vim-varnish'
 Bundle 'chase/vim-ansible-yaml'
+Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'rust-lang/rust.vim'
 
 " Vim Text Objects
 Bundle 'bkad/CamelCaseMotion'

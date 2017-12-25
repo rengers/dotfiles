@@ -63,3 +63,7 @@ nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
 
 "Tagbar
 nmap <F8> :TagbarToggle<CR>
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"

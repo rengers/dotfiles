@@ -96,5 +96,8 @@ set diffopt+=vertical
 " YouCompleteMe:
 let g:ycm_filetype_whitelist = { 'go': 1 }
 
+" Deoplete:
+let g:deoplete#enable_at_startup = 1
+
 " VimInstantMarkdown:
 let g:instant_markdown_autostart = 0
