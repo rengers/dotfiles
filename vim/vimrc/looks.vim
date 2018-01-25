@@ -6,10 +6,9 @@ syntax enable "Enable syntax hl
 "Ross font
 set gfn=Monaco\ 9
 
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
 set number
+let g:solarized_termtrans=1
+colorscheme solarized8_dark
 
 
 """"""""""""""""""""""""""""""
@@ -40,3 +39,11 @@ let g:airline_powerline_fonts = 1
 set noshowmode
 
 set foldlevel=99
+
+" Highlight trailing space 
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()

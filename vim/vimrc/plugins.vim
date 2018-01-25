@@ -73,6 +73,7 @@ Bundle 'mattn/emmet-vim'
 if has('nvim')
   Bundle 'Shougo/deoplete.nvim'
   Bundle 'zchee/deoplete-go'
+  Bundle 'equalsraf/neovim-gui-shim'
 else
   Bundle 'Valloric/YouCompleteMe'
 endif
@@ -138,6 +139,7 @@ Bundle 'tpope/vim-classpath'
 " Colors
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
+Bundle 'lifepillar/vim-solarized8'
 
 " Utilities, Dependencies
 Bundle 'L9'
