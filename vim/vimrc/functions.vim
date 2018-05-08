@@ -1,6 +1,6 @@
 func! Cwd()
   let cwd = getcwd()
-  return "e " . cwd 
+  return "e " . cwd
 endfunc
 
 
@@ -59,12 +59,12 @@ endfunction
 
 "
 " From an idea by Michael Naumann
-" 
+"
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 
 function! VisualSelection(direction) range
@@ -88,4 +88,39 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-nmap =j :%!python -m json.tool<CR>
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+    echohl ErrorMsg
+    echo "Location List is Empty."
+    return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>c :call ToggleList("Quickfix List", 'c')<CR>
+
+map =j :%!python -m json.tool<CR>
+
+
+" Profiling
+nnoremap <silent> <leader>ps :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
+nnoremap <silent> <leader>pq :exe ":profile pause"<cr>:noautocmd qall!<cr>

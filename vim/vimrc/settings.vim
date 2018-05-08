@@ -22,7 +22,7 @@ set smartcase
 set hlsearch "Highlight search things
 
 set incsearch "Make search act like search in modern browsers
-set nolazyredraw "Don't redraw while executing macros 
+set nolazyredraw "Don't redraw while executing macros
 
 set magic "Set magic on, for regular expressions
 
@@ -33,9 +33,12 @@ set mat=2 "How many tenths of a second to blink
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
 
-" Specify the behavior when switching between buffers 
+" Timeouts and updates
+set timeoutlen=500
+set updatetime=100
+
+" Specify the behavior when switching between buffers
 try
   set switchbuf=usetab
   set stal=1

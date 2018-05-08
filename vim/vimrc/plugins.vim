@@ -79,7 +79,7 @@ else
 endif
 
 " Preview markdown
-Bundle 'suan/vim-instant-markdown'
+"Bundle 'suan/vim-instant-markdown'
 
 
 " snipMate
@@ -126,6 +126,8 @@ Bundle 'empanda/vim-varnish'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'octol/vim-cpp-enhanced-highlight'
 Bundle 'rust-lang/rust.vim'
+Bundle 'cespare/vim-toml'
+Bundle 'mxw/vim-jsx'
 
 " Vim Text Objects
 Bundle 'bkad/CamelCaseMotion'
