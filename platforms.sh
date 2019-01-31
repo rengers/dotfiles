@@ -3,7 +3,7 @@
 # Useful functions to get platforms
 
 function is_osx() {
-  [[ "$OSTYPE" =~ ^darwin ]] || return 1
+  [[ "$OSTYPE" == "darwin"* ]] || return 1
 }
 
 function is_ubuntu() {
