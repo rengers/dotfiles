@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
+set -e
 
 source $HOME/dotfiles/platforms.sh
-is_osx || echo "Not OSX. Skipping brew install" && exit 0
+is_osx || (echo "Not OSX. Skipping brew install" && exit 0)
 
 # Install homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ ! -f /usr/local/bin/brew ]
+then
+  echo "Installing homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Ask for the administrator password upfront.
 sudo -v
@@ -56,25 +61,23 @@ brew install ag
 brew install tcptraceroute
 brew install ctags
 
-# Install cask and programs
-brew install caskroom/cask/brew-cask
-brew cask install google-chrome
-brew cask install firefox
-brew cask install alfred
-brew cask install amethyst
-brew cask install bettertouchtool
-brew cask install spotify
-brew cask install adobe-reader
-brew cask install seil
-brew cask install android-file-transfer
-brew cask install growlnotify
-brew cask install iterm2
-brew cask install vlc
-brew cask install menumeters
-brew cask install gpgtools
-brew cask install xquartz
-brew cask install colloquy
-brew cask install skype
+# Install brew casks
+brew cask install google-chrome --force
+brew cask install firefox --force
+brew cask install alfred --force
+brew cask install amethyst --force
+brew cask install bettertouchtool --force
+brew cask install spotify --force
+brew cask install adobe-acrobat-reader --force
+brew cask install karabiner-elements --force
+brew cask install android-file-transfer --force
+brew cask install growlnotify --force
+brew cask install iterm2 --force
+brew cask install vlc --force
+brew cask install gpg-suite --force
+brew cask install colloquy --force
+brew cask install skype --force
+brew cask install java --force
 
 #cleanup cask
 brew cask cleanup
