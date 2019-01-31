@@ -26,12 +26,13 @@ brew install findutils
 
 # Install more recent versions of some OS X tools.
 brew install vim --override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/screen
 
 # Install other useful binaries.
 brew install zsh
 brew install python
+brew install python3
+brew install direnv
+brew install fzf
 brew install go --cross-compile-common
 brew install mercurial
 brew install ack
@@ -54,7 +55,6 @@ brew install nmap
 brew install ag
 brew install tcptraceroute
 brew install ctags
-brew install chtf
 
 # Install cask and programs
 brew install caskroom/cask/brew-cask
