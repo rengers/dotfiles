@@ -71,7 +71,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
 if has('nvim')
-  Bundle 'Shougo/deoplete.nvim'
+  Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Bundle 'zchee/deoplete-go'
   Bundle 'equalsraf/neovim-gui-shim'
 else
@@ -115,7 +115,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-salve'
 Bundle 'fatih/vim-go'
-Bundle 'nsf/gocode'
+Bundle 'mdempsky/gocode'
 Bundle 'kingbin/vim-arduino'
 Bundle 'sudar/vim-arduino-syntax'
 Bundle 'solarnz/thrift.vim'

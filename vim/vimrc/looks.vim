@@ -8,7 +8,7 @@ set gfn=Monaco\ 9
 
 set number
 let g:solarized_termtrans=1
-colorscheme solarized8_dark
+colorscheme solarized8
 
 
 """"""""""""""""""""""""""""""
