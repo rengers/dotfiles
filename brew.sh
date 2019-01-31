@@ -79,8 +79,5 @@ brew cask install colloquy --force
 brew cask install skype --force
 brew cask install java --force
 
-#cleanup cask
-brew cask cleanup
-
 # Remove outdated versions from the cellar.
 brew cleanup
