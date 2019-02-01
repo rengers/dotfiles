@@ -46,7 +46,7 @@ export PATH="$HOME/bin:$PATH"
 export PYTHONPATH="$HOME/.local/lib"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
 
-# GOlang
+# Golang
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -63,11 +63,16 @@ PATH=/usr/local/sbin:/usr/local/bin:$PATH
 # Load rbenv
 eval "$(rbenv init - zsh)"
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# Load direnv
+eval "$(direnv hook zsh)"
+
 # Aliases
 alias gs='git status'
 alias gd='git diff'
 alias gc='git commit'
 alias sz='source ~/.zshrc'
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+alias nim='nvim'
+alias ez='nim ~/.zshrc'
