@@ -76,3 +76,6 @@ alias gc='git commit'
 alias sz='source ~/.zshrc'
 alias nim='nvim'
 alias ez='nim ~/.zshrc'
+
+# Enable fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
