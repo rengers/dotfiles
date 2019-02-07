@@ -1,0 +1,37 @@
+# Function to to create aliases
+function new-alias() {
+
+  ALIAS_FILE=$HOME/.zshrc_aliases
+  ALIAS_NAME=`echo "$1" | grep -o ".*="`
+
+  # Check if alias name empty to prevent sed deleting every line
+  if [[ -z "$ALIAS_NAME" ]]; then
+    echo 'USAGE: new-alias name="command" ' 1>&2
+    echo '       new-alias hi="echo hello there" \n' 1>&2
+    echo "Bad format. Exiting..." 1>&2
+    exit 1
+  fi
+
+  # Deleting any duplicate alises found
+  gsed -i --follow-symlinks "/alias $ALIAS_NAME/d" $ALIAS_FILE
+
+  # Quoting command: my-new-alias=command -> my-new-alias="command"
+  QUOTED=`echo "$1"\" | gsed --follow-symlinks "s/$ALIAS_NAME/$ALIAS_NAME\"/g"`
+
+  # Appending the command to the config (before "# END ALIASES")
+  gsed -i --follow-symlinks "/^# END ALIASES/i alias $QUOTED" $ALIAS_FILE
+
+  # Reload
+  source $ALIAS_FILE
+}
+
+
+# ALIASES
+alias gs='git status'
+alias gd='git diff'
+alias gc='git commit'
+alias sz='source ~/.zshrc'
+alias nim='nvim'
+alias ez='nim ~/.zshrc'
+alias da="direnv allow"
+# END ALIASES

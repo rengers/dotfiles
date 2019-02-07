@@ -69,13 +69,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # Load direnv
 eval "$(direnv hook zsh)"
 
-# Aliases
-alias gs='git status'
-alias gd='git diff'
-alias gc='git commit'
-alias sz='source ~/.zshrc'
-alias nim='nvim'
-alias ez='nim ~/.zshrc'
-
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

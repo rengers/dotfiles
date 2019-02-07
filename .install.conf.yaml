@@ -6,6 +6,7 @@
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
+    ~/.zshrc_aliases: zshrc_aliases
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
 - shell:
     - [./core_deps.sh, Installing core dependencies]
