@@ -8,6 +8,7 @@
     ~/.zshrc: zshrc
     ~/.zshrc_aliases: zshrc_aliases
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
+    ~/.pryrc: pryrc
 - shell:
     - [./core_deps.sh, Installing core dependencies]
     - [git submodule update --init --recursive, Updating submodules]
