@@ -28,6 +28,7 @@ brew "nmap"
 brew "ag"
 brew "tcptraceroute"
 brew "ctags"
+brew "plantuml"
 
 # Install brew casks
 cask_args appdir: "/Applications"
