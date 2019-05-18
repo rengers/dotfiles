@@ -24,7 +24,7 @@ then
   running=0
 else
   running=0
-  for u in `ps ax | grep "[s]sh-agent" | awk '{ print $1 }'`
+  for u in `pgrep "ssh-agent"`
   do
     if [[ "$running" != "1" ]]
     then
@@ -69,6 +69,14 @@ then
   then
     `$SSH_ADD_CMD -s /usr/lib64/libeToken.so`
   fi
+
+  # Test if identity is already added
+  `$SSH_ADD_CMD -l > /dev/null 2>&1`
+  if [[ $? == 1 ]]
+  then
+    `$SSH_ADD_CMD`
+  fi
+
 elif [[ "$other" != "0" ]]
 then
   if ps -p $other|grep $other|grep defunct >/dev/null
@@ -79,9 +87,3 @@ then
   fi
 fi
 
-# Test if identity is already added
-`$SSH_ADD_CMD -l > /dev/null 2>&1`
-if [[ $? == 1 ]]
-then
-  `$SSH_ADD_CMD`
-fi

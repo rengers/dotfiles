@@ -34,4 +34,5 @@ alias sz='source ~/.zshrc'
 alias nim='nvim'
 alias ez='nim ~/.zshrc'
 alias da="direnv allow"
+alias awswho="aws sts get-caller-identity"
 # END ALIASES
