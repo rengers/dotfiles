@@ -48,3 +48,7 @@ cask "gpg-suite"
 cask "colloquy"
 cask "skype"
 cask "java"
+
+# Font tap
+tap "caskroom/fonts"
+cask "font-fira-code"
