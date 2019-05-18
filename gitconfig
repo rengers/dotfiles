@@ -18,7 +18,7 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-  gogrep = "!f() { git grep $1 -- `git ls-files | grep -v vendor`; }; f"
+  gogrep = "!f() { git grep $1 -- `git ls-files | grep -v vendor | grep -v _tools/`; }; f"
 [push]
 	default = current
 [branch]
