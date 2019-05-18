@@ -4,11 +4,12 @@ map <leader>st :SyntasticToggleMode<cr>
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'gofmt']
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'gofmt']
+let g:syntastic_go_checkers = ['golint', 'errcheck', 'gofmt']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': [''] }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_puppet_checkers=['puppetlint']
 
@@ -86,7 +87,7 @@ nmap [h <Plug>GitGutterPrevHunk]
 
 " VimMarkdown:
 au BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'python', 'java', 'bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
+let g:markdown_fenced_languages = ['go', 'coffee', 'css', 'erb=eruby', 'python', 'java', 'bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 
 
 " Fugitive:
@@ -101,3 +102,18 @@ let g:deoplete#enable_at_startup = 1
 
 " VimInstantMarkdown:
 let g:instant_markdown_autostart = 0
+
+" Cpp:
+let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+
+" Ale:
+" Error and warning signs.
+let g:ale_sign_error = '⤫'
+let g:ale_sign_warning = '⚠'
+" Enable integration with airline.
+let g:airline#extensions#ale#enabled = 1
+let g:airline_highlighting_cache = 1
+
+
+" UndoTree:
+map <F4> :UndotreeToggle<cr>
