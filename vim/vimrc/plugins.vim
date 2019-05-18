@@ -35,6 +35,7 @@ Bundle 'gregsexton/MatchTag'
 " Rainbow parentheses!! :)
 Bundle 'kien/rainbow_parentheses.vim'
 
+Bundle 'ryanoasis/vim-devicons'
 
 " ------------------------
 " --- Vim enhancements ---
@@ -47,6 +48,7 @@ Bundle 'SearchComplete'
 Bundle 'mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'mbbill/undotree'
 
 
 " ----------------------------
@@ -65,30 +67,29 @@ Bundle 'godlygeek/tabular'
 Bundle 'Raimondi/delimitMate'
 
 " Syntax checking in Vim!
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic' " Use ale instead
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
 if has('nvim')
   Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Bundle 'zchee/deoplete-go'
+  Bundle 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+
   Bundle 'equalsraf/neovim-gui-shim'
 else
   Bundle 'Valloric/YouCompleteMe'
 endif
-
-" Preview markdown
-"Bundle 'suan/vim-instant-markdown'
-
+Bundle 'w0rp/ale'
 
 " snipMate
-Bundle 'garbas/vim-snipmate'
+"Bundle 'garbas/vim-snipmate'
+"Plugin 'SirVer/ultisnips'
 
 " snipMate dependences
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
-Bundle 'scrooloose/snipmate-snippets'
+"Bundle 'scrooloose/snipmate-snippets'
 
 " Language support
 Bundle 'tpope/vim-rails'
@@ -115,7 +116,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-salve'
 Bundle 'fatih/vim-go'
-Bundle 'mdempsky/gocode'
+Plugin 'stamblerre/gocode', {'rtp': 'vim/'}
 Bundle 'kingbin/vim-arduino'
 Bundle 'sudar/vim-arduino-syntax'
 Bundle 'solarnz/thrift.vim'
@@ -125,6 +126,7 @@ Bundle 'rodjek/vim-puppet'
 Bundle 'empanda/vim-varnish'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'Rip-Rip/clang_complete'
 Bundle 'rust-lang/rust.vim'
 Bundle 'cespare/vim-toml'
 Bundle 'mxw/vim-jsx'
