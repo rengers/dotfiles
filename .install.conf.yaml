@@ -3,12 +3,14 @@
     ~/.dotfiles: ''
     ~/.gitconfig: gitconfig
     ~/.ctags: ctags
+    ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
     ~/.zshrc_aliases: zshrc_aliases
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
     ~/.pryrc: pryrc
+    ~/scripts: scripts/
 - shell:
     - [./core_deps.sh, Installing core dependencies]
     - [git submodule update --init --recursive, Updating submodules]
