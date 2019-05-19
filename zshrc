@@ -1,3 +1,6 @@
+# Start profilng
+#zmodload zsh/zprof
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -32,18 +35,20 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundle gem rails ruby rake virtualenv go hub docker brew)
+plugins=(git bundler gem ruby rake virtualenv go github docker brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/lib/lightdm/lightdm:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 export PYTHONPATH="$HOME/.local/lib"
+export PYTHON3PATH="/usr/local/lib/python3.7/site-packages"
+
 export LD_LIBRARY_PATH="$HOME/.local/lib"
 
 # Golang
@@ -61,7 +66,7 @@ for f in ~/.zshrc_*; do source $f; done
 PATH=/usr/local/sbin:/usr/local/bin:$PATH
 
 # Load rbenv
-eval "$(rbenv init - zsh)"
+eval "$(rbenv init --no-rehash - zsh)"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -71,3 +76,17 @@ eval "$(direnv hook zsh)"
 
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Java path
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init - --no-rehash)"
+
+export LLVM="`brew --prefix`/opt/emscripten/libexec/llvm/bin"
+
+# Load rust
+source $HOME/.cargo/env
+
+#source /usr/local/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# Turn off profiling
+#zprof
