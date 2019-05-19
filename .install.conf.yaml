@@ -9,6 +9,7 @@
     ~/.zshrc: zshrc
     ~/.zshrc_aliases: zshrc_aliases
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
+    ~/.alacritty.yml: alacritty.yml
     ~/.pryrc: pryrc
     ~/scripts: scripts/
 - shell:
