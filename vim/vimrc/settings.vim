@@ -79,3 +79,5 @@ catch
 endtry
 
 set ffs=unix,dos,mac "Default file types
+
+set spellfile=~/.vim/spell/en.utf-8.add
