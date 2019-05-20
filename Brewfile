@@ -1,12 +1,15 @@
 brew "cmake"
 brew "findutils"
-brew "vim", args: ["override-system-vi"]
+brew "vim"
+brew "neovim"
 brew "zsh"
 brew "python"
 brew "python3"
 brew "direnv"
 brew "fzf"
-brew "go", args: ["cross-compile-common"]
+brew "go"
+brew "rust"
+brew "jenv"
 brew "mercurial"
 brew "ack"
 brew "bzr"
@@ -32,8 +35,8 @@ brew "plantuml"
 
 # Install brew casks
 cask_args appdir: "/Applications"
-cask "google-chrome"
-cask "firefox"
+#cask "google-chrome"
+#cask "firefox"
 cask "alfred"
 cask "amethyst"
 cask "bettertouchtool"

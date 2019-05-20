@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -x
 
 source $HOME/dotfiles/platforms.sh
 is_osx || (echo "Not OSX. Skipping brew install" && exit 0)

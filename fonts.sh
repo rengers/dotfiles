@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -x
 echo "Installing patched fonts"
 
 # Pull down the font repo
