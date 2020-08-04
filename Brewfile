@@ -48,10 +48,9 @@ cask "growlnotify"
 cask "iterm2"
 cask "vlc"
 cask "gpg-suite"
-cask "colloquy"
 cask "skype"
 cask "java"
 
 # Font tap
-tap "caskroom/fonts"
+tap "homebrew/cask-fonts"
 cask "font-fira-code"
