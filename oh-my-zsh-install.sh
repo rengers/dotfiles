@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+if [ ! -f ~/.oh-my-zsh/oh-my-zsh.sh ]; then
+  echo "Installing Ohmyzsh..."
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
