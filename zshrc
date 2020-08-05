@@ -39,12 +39,17 @@ plugins=(git bundler gem ruby rake virtualenv golang github docker brew)
 
 source $ZSH/oh-my-zsh.sh
 
+export LC_CTYPE="en_US.UTF-8"
+
 # Customize to your needs...
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PYTHONPATH="$HOME/.local/lib"
 export PYTHON3PATH="/usr/local/lib/python3.7/site-packages"

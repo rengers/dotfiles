@@ -3,12 +3,13 @@ brew "findutils"
 brew "vim"
 brew "neovim"
 brew "zsh"
-brew "python"
-brew "python3"
+brew "pyenv"
+# brew "python" - pyenv
+# brew "python3" - pyenv
 brew "direnv"
 brew "fzf"
 brew "go"
-brew "rust"
+# brew "rust" - use rustup instead
 brew "jenv"
 brew "mercurial"
 brew "ack"

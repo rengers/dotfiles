@@ -72,13 +72,15 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-endwise'
 Bundle 'matchit.zip'
 Bundle 'mattn/emmet-vim'
+Bundle 'neoclide/coc.nvim', {'branch': 'release'}
+
 if has('nvim')
-  Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Bundle 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+  "Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Bundle 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
   Bundle 'equalsraf/neovim-gui-shim'
 else
-  Bundle 'Valloric/YouCompleteMe'
+ "Bundle 'Valloric/YouCompleteMe'
 endif
 Bundle 'w0rp/ale'
 
