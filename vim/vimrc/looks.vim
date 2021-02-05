@@ -23,11 +23,6 @@ if !exists('g:airline_powerline_fonts')
   set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L\ \ \
   set statusline+=%= " right align
   set statusline+=%{GitBranch()}\
-
-  "" Syntastic
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
 endif
 
 "python from powerline.vim import setup as powerline_setup
