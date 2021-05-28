@@ -1,151 +1,153 @@
 " Where all the plugins are specified, using Vundle
 " Initialize vundle!
 set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
+call plug#begin()
+
 " ----------------------------
 " Plugins, managed by Vundle!
 " ----------------------------
 " Use to manage plugins!
-Bundle 'gmarik/vundle'
+Plug 'gmarik/vundle'
 
 
 " ----------------
 " --- Movement ---
 " ----------------
 " Easier vim motions. Try <Leader><Leader>w or <Leader><Leader>fo
-Bundle 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 " Like Command-T or fuzzyfinder. Use to fuzzy find files
-Bundle 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 
 " -----------------------
 " --- UI enhancements ---
 " -----------------------
 " Highlight levels of indentation
-Bundle 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " File explorer within Vim
-Bundle 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Ultimate Vim statusline utility
-"Bundle 'Lokaltog/vim-powerline'
-Bundle 'bling/vim-airline'
+"Plug 'Lokaltog/vim-powerline'
+Plug 'bling/vim-airline'
 " Highlights the matching HTML tag
-Bundle 'gregsexton/MatchTag'
+Plug 'gregsexton/MatchTag'
 " Rainbow parentheses!! :)
-Bundle 'kien/rainbow_parentheses.vim'
+Plug 'kien/rainbow_parentheses.vim'
 
-Bundle 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " ------------------------
 " --- Vim enhancements ---
 " ------------------------
 " Shows 'Nth match out of M' for searches
-Bundle 'IndexedSearch'
+Plug 'henrik/vim-indexed-search'
 " Allow tab completion when searching
-Bundle 'SearchComplete'
+Plug 'vim-scripts/SearchComplete'
 " Simple plugin to view most recently used files
-Bundle 'mru.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'mbbill/undotree'
+Plug 'vim-scripts/mru.vim'
+Plug 'vim-scripts/bufexplorer.zip'
+Plug 'airblade/vim-gitgutter'
+Plug 'mbbill/undotree'
 
 
 " ----------------------------
 " --- Editing enhancements ---
 " ----------------------------
 " Shortcuts to comment code. Use <Leader>cc or <Leader>c<Space>
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " Simple shortcuts to deal with surrounding symbols
-Bundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Text filtering and alignment
-Bundle 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " Insert-mode autocompletion for quotes, parens, brackets, etc.
-Bundle 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " Syntax checking in Vim!
-" Bundle 'scrooloose/syntastic' " Use ale instead
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-endwise'
-Bundle 'matchit.zip'
-Bundle 'mattn/emmet-vim'
-Bundle 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'scrooloose/syntastic' " Use ale instead
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-endwise'
+Plug 'mattn/emmet-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 if has('nvim')
-  "Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  "Bundle 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 
-  Bundle 'equalsraf/neovim-gui-shim'
+  Plug 'equalsraf/neovim-gui-shim'
 else
- "Bundle 'Valloric/YouCompleteMe'
+ "Plug 'Valloric/YouCompleteMe'
 endif
-Bundle 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " snipMate
-"Bundle 'garbas/vim-snipmate'
-"Plugin 'SirVer/ultisnips'
+"Plug 'garbas/vim-snipmate'
+"Plug 'SirVer/ultisnips'
 
 " snipMate dependences
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-"Bundle 'scrooloose/snipmate-snippets'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+"Plug 'scrooloose/snipmate-snippets'
 
 " Language support
-Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'noprompt/vim-yardoc'
-Bundle 'tpope/vim-haml'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'leshill/vim-json'
-Bundle 'tpope/vim-markdown'
-Bundle 'vimoutliner/vimoutliner'
-Bundle 'wannesm/wmgraphviz.vim'
-Bundle 'omlet.vim'
-Bundle 'jcf/vim-latex'
-Bundle 'vim-scripts/haskell.vim'
-Bundle 'spf13/PIV'
-Bundle 'othree/html5.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'slim-template/vim-slim'
-Bundle 'klen/python-mode'
-Bundle 'django.vim'
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-salve'
-Bundle 'fatih/vim-go'
-Plugin 'stamblerre/gocode', {'rtp': 'vim/'}
-Bundle 'kingbin/vim-arduino'
-Bundle 'sudar/vim-arduino-syntax'
-Bundle 'solarnz/thrift.vim'
-Bundle 'junegunn/vim-easy-align'
-Bundle 'hashivim/vim-terraform'
-Bundle 'rodjek/vim-puppet'
-Bundle 'empanda/vim-varnish'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'octol/vim-cpp-enhanced-highlight'
-Bundle 'Rip-Rip/clang_complete'
-Bundle 'rust-lang/rust.vim'
-Bundle 'cespare/vim-toml'
-Bundle 'mxw/vim-jsx'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+Plug 'noprompt/vim-yardoc'
+Plug 'tpope/vim-haml'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'itspriddle/vim-jquery'
+Plug 'leshill/vim-json'
+Plug 'tpope/vim-markdown'
+Plug 'vimoutliner/vimoutliner'
+Plug 'wannesm/wmgraphviz.vim'
+"Plug 'jcf/vim-latex' - turn on if need latex
+Plug 'vim-scripts/haskell.vim'
+Plug 'spf13/PIV'
+Plug 'othree/html5.vim'
+Plug 'groenewege/vim-less'
+"Plug 'slim-template/vim-slim' - don't really use slim templates
+Plug 'klen/python-mode'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'tpope/vim-salve'
+Plug 'fatih/vim-go'
+"Plug 'stamblerre/gocode', {'rtp': 'vim/'}
+Plug 'kingbin/vim-arduino'
+Plug 'sudar/vim-arduino-syntax'
+Plug 'solarnz/thrift.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'hashivim/vim-terraform'
+Plug 'rodjek/vim-puppet'
+Plug 'empanda/vim-varnish'
+Plug 'chase/vim-ansible-yaml'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'Rip-Rip/clang_complete'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'mxw/vim-jsx'
+Plug 'scrooloose/vim-slumlord'
+Plug 'aklt/plantuml-syntax'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Vim Text Objects
-Bundle 'bkad/CamelCaseMotion'
+Plug 'bkad/CamelCaseMotion'
 
 " Integrations
-Bundle 'tpope/vim-fugitive'
-Bundle 'mileszs/ack.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-classpath'
+Plug 'tpope/vim-fugitive'
+Plug 'mileszs/ack.vim'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-classpath'
 
 " Colors
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'sjl/badwolf'
-Bundle 'lifepillar/vim-solarized8'
+Plug 'altercation/vim-colors-solarized'
+"Plug 'sjl/badwolf' - don't use color scheme
+Plug 'lifepillar/vim-solarized8'
 
 " Utilities, Dependencies
-Bundle 'L9'
+Plug 'vim-scripts/L9'
+
+call plug#end()

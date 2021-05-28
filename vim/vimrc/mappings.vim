@@ -67,3 +67,7 @@ nmap <F8> :TagbarToggle<CR>
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+
+" Location list
+nnoremap <leader>ln :lnext<cr>
+nnoremap <leader>lp :lprev<cr>

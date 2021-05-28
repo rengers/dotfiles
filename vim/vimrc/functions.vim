@@ -115,12 +115,21 @@ function! ToggleList(bufname, pfx)
   endif
 endfunction
 
-nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nmap <silent> <leader>c :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <leader>c :call ToggleList("Quickfix List", 'c')<CR>
 
-map =j :%!python -m json.tool<CR>
+nnoremap =j :%!python -m json.tool<CR>
+
+
+function! StartProfiling()
+  execute "profile start profile.log"
+  execute "profile func *"
+  execute "profile file *"
+endfunction
 
 
 " Profiling
-nnoremap <silent> <leader>ps :exe ":profile start profile.log"<cr>:exe ":profile func *"<cr>:exe ":profile file *"<cr>
-nnoremap <silent> <leader>pq :exe ":profile pause"<cr>:noautocmd qall!<cr>
+"nnoremap <silent> <leader>ps :exe ":profile start profile.log"<CR> :exe ":profile func *"<CR> :exe ":profile file *"<CR>
+nnoremap <silent> <leader>s :call StartProfiling()<CR>
+nnoremap <silent> <leader>ss :exe ":profile pause"<cr>:noautocmd qall!<cr>
+
