@@ -37,6 +37,8 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git bundler gem ruby rake virtualenv golang github docker brew)
 
+fpath+=~/.zfunc
+
 source $ZSH/oh-my-zsh.sh
 
 export LC_CTYPE="en_US.UTF-8"
@@ -95,3 +97,5 @@ source $HOME/.cargo/env
 #source /usr/local/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # Turn off profiling
 #zprof
+
+export PATH=$HOME/.toolbox/bin:$PATH
