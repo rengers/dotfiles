@@ -133,6 +133,8 @@ Plug 'scrooloose/vim-slumlord'
 Plug 'aklt/plantuml-syntax'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
+Plug 'Shougo/vinarise.vim'
+
 " Vim Text Objects
 Plug 'bkad/CamelCaseMotion'
 
