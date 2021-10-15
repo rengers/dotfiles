@@ -84,12 +84,20 @@ eval "$(direnv hook zsh)"
 # Enable fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Node
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Java path
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init - --no-rehash)"
+if [[ -f jenv ]]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init - --no-rehash)"
+fi
 
-export LLVM="`brew --prefix`/opt/emscripten/libexec/llvm/bin"
+
+if [[ -f brew ]]; then
+  export LLVM="`brew --prefix`/opt/emscripten/libexec/llvm/bin"
+fi
 
 # Load rust
 source $HOME/.cargo/env
@@ -98,4 +106,4 @@ source $HOME/.cargo/env
 # Turn off profiling
 #zprof
 
-export PATH=$HOME/.toolbox/bin:$PATH
+export PATH="$HOME/.toolbox/bin:$PATH"
