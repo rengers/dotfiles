@@ -59,8 +59,9 @@ export PYTHON3PATH="/usr/local/lib/python3.7/site-packages"
 export LD_LIBRARY_PATH="$HOME/.local/lib"
 
 # Golang
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=~/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Terraform - Source chtf
 if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
