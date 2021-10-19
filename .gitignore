@@ -1,4 +1,5 @@
 vim/bundle
 vim/undodir
+vim/plugged
 fonts
 Brewfile.lock.json
