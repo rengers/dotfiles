@@ -30,3 +30,7 @@ datastore
 OracleDB
 datacenter
 performant
+CloudWatch
+serverless
+Route53
+ApiGW
