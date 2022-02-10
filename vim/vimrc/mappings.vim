@@ -71,3 +71,6 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 " Location list
 nnoremap <leader>ln :lnext<cr>
 nnoremap <leader>lp :lprev<cr>
+
+" Spell check
+noremap <leader>z 1z=

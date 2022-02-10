@@ -93,6 +93,7 @@ Plug 'tomtom/tlib_vim'
 "Plug 'scrooloose/snipmate-snippets'
 
 " Language support
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'
@@ -133,6 +134,9 @@ Plug 'scrooloose/vim-slumlord'
 Plug 'aklt/plantuml-syntax'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
+" Screenplay formatting
+Plug 'kblin/vim-fountain'
+
 Plug 'Shougo/vinarise.vim'
 
 " Vim Text Objects
@@ -148,6 +152,7 @@ Plug 'tpope/vim-classpath'
 Plug 'altercation/vim-colors-solarized'
 "Plug 'sjl/badwolf' - don't use color scheme
 Plug 'lifepillar/vim-solarized8'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " Utilities, Dependencies
 Plug 'vim-scripts/L9'
