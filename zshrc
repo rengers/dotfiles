@@ -52,9 +52,12 @@ export PATH="$HOME/bin:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
-export PYTHONPATH="$HOME/.local/lib"
-export PYTHON3PATH="/usr/local/lib/python3.7/site-packages"
+#export PYTHONPATH="$HOME/.local/lib"
+#export PYTHON3PATH="/usr/local/lib/python3.7/site-packages"
 
 export LD_LIBRARY_PATH="$HOME/.local/lib"
 
