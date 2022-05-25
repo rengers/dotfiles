@@ -97,6 +97,8 @@ if [[ -f jenv ]]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init - --no-rehash)"
 fi
+export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
+
 
 
 if [[ -f brew ]]; then
