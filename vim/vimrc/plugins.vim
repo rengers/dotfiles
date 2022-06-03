@@ -29,7 +29,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Ultimate Vim statusline utility
 "Plug 'Lokaltog/vim-powerline'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Highlights the matching HTML tag
 Plug 'gregsexton/MatchTag'
 " Rainbow parentheses!! :)
