@@ -33,6 +33,7 @@ brew "ag"
 brew "tcptraceroute"
 brew "ctags"
 brew "plantuml"
+brew "ripgrep"
 
 # Install brew casks
 cask_args appdir: "/Applications"
