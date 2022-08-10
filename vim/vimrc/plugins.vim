@@ -71,7 +71,10 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 Plug 'mattn/emmet-vim'
+
+" Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'hrsh7th/nvim-cmp'
 
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -93,7 +96,8 @@ Plug 'tomtom/tlib_vim'
 "Plug 'scrooloose/snipmate-snippets'
 
 " Language support
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'
@@ -156,5 +160,7 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " Utilities, Dependencies
 Plug 'vim-scripts/L9'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
 call plug#end()
