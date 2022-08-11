@@ -8,7 +8,7 @@ is_osx || (echo "Not OSX. Skipping brew install" && exit 0)
 if [ ! -f /usr/local/bin/brew ]
 then
   echo "Installing homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Ask for the administrator password upfront.

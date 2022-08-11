@@ -34,6 +34,7 @@ brew "tcptraceroute"
 brew "ctags"
 brew "plantuml"
 brew "ripgrep"
+brew "1password"
 
 # Install brew casks
 cask_args appdir: "/Applications"
@@ -51,7 +52,7 @@ cask "iterm2"
 cask "vlc"
 cask "gpg-suite"
 cask "skype"
-cask "java"
+# cask "java"
 
 # Font tap
 tap "homebrew/cask-fonts"

@@ -20,6 +20,7 @@
     - [git submodule update --init --recursive, Updating submodules]
     - [./brew.sh, Installing and updating homebrew packages]
     - [./ruby-install.sh, Installing latest ruby with rbenv and ruby-build]
+    - [./rust-install.sh, Installing latest rust with rustup]
     - [./oh-my-zsh-install.sh, Installing oh-my-zsh]
     - [./vim/vundle_bootstrap.sh, Setting up Vundle and Vim plusings]
     - [./fonts.sh, Installing Powerline patched fonts]
