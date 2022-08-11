@@ -22,5 +22,5 @@
     - [./ruby-install.sh, Installing latest ruby with rbenv and ruby-build]
     - [./rust-install.sh, Installing latest rust with rustup]
     - [./oh-my-zsh-install.sh, Installing oh-my-zsh]
-    - [./vim/vundle_bootstrap.sh, Setting up Vundle and Vim plusings]
+    - [./vim/plugin_bootstrap.sh, Setting up Plugins for vim/nvim]
     - [./fonts.sh, Installing Powerline patched fonts]
