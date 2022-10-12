@@ -72,8 +72,8 @@ let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': ''
 "highlight clear SignColumn
 " vim-gitgutter will use Sign Column to set its color, reload it.
 "call gitgutter#highlight#define_highlights()
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk]
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 
 " VimMarkdown:
@@ -110,33 +110,37 @@ let g:airline_highlighting_cache = 1
 map <F4> :UndotreeToggle<cr>
 
 
-" CoC:
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
-" remap for complete to use tab and <cr>
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-inoremap <silent><expr> <c-space> coc#refresh()
+if has_key(plugs, "coc.nvim")
+  " CoC:
+  inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <C-x><C-z> coc#pum#visible() ? coc#pum#stop() : "\<C-x>\<C-z>"
+  " remap for complete to use tab and <cr>
+  inoremap <silent><expr> <TAB>
+        \ coc#pum#visible() ? coc#pum#next(1):
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+  inoremap <silent><expr> <c-space> coc#refresh()
 
-hi CocSearch ctermfg=12 guifg=#18A3FF
-hi CocMenuSel ctermbg=109 guibg=#13354A
+  hi CocSearch ctermfg=12 guifg=#18A3FF
+  hi CocMenuSel ctermbg=109 guibg=#13354A
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+  " Use K to show documentation in preview window.
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+  endfunction
 
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+  " Symbol renaming.
+  nmap <leader>rn <Plug>(coc-rename)
+endif
+
+set completeopt=menu,menuone,noselect
 
