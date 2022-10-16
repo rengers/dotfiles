@@ -6,9 +6,7 @@
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
     ~/.vimrc: vimrc
-    ~/.config/nvim/init.vim:
-            create: true
-            path: nvim/init.vim
+    ~/.config/nvim: nvim
     ~/.zshrc: zshrc
     ~/.zshrc_aliases: zshrc_aliases
     ~/.zshrc_ssh_agent: zshrc_ssh_agent
