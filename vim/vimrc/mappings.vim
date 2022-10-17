@@ -38,14 +38,14 @@ map <left> :bp<cr>
 
 " Tab configuration
 map <leader>tn :tabnew! %<cr>
-map <leader>te :tabedit 
+map <leader>te :tabedit
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
+map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
-map <F6> :noh<cr> 
+map <F6> :noh<cr>
 
 
 " Fast saving
@@ -80,3 +80,6 @@ nnoremap <leader>lp :lprev<cr>
 
 " Spell check
 noremap <leader>z 1z=
+
+" Live Grep mapping via Telescope
+nmap <leader>gg :execute "Telescope live_grep default_text=" . expand("<cword>")<cr>

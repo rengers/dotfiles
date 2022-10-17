@@ -51,9 +51,6 @@ Plug 'mbbill/undotree'
 " Shortcuts to comment code. Use <Leader>cc or <Leader>c<Space>
 Plug 'scrooloose/nerdcommenter'
 
-" Simple shortcuts to deal with surrounding symbols
-Plug 'tpope/vim-surround'
-
 " Insert-mode autocompletion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
@@ -66,8 +63,8 @@ Plug 'tpope/vim-endwise'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
 " Configure through lua
-Plug 'neovim/nvim-lspconfig'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'jose-elias-alvarez/null-ls.nvim'
 "Plug 'hrsh7th/cmp-nvim-lsp'
 "Plug 'hrsh7th/cmp-buffer'
 "Plug 'hrsh7th/cmp-path'

@@ -10,6 +10,7 @@ brew "direnv"
 brew "fzf"
 brew "go"
 # brew "rust" - use rustup instead
+brew "lua-language-server"
 brew "jenv"
 brew "mercurial"
 brew "ack"

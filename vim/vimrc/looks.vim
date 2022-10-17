@@ -26,6 +26,8 @@ if !exists('g:airline_powerline_fonts')
   set statusline+=%{GitBranch()}\
 endif
 
+set cursorline
+
 "python from powerline.vim import setup as powerline_setup
 "python powerline_setup()
 "python del powerline_setup
@@ -43,3 +45,8 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+" Illuminate highlight config
+hi def IlluminatedWordText cterm=underline gui=underline
+hi def IlluminatedWordRead cterm=underline gui=underline
+hi def IlluminatedWordWrite cterm=underline gui=underline

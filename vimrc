@@ -13,6 +13,7 @@ source $HOME/.vim/vimrc/functions.vim
 source $HOME/.vim/vimrc/misc.vim
 source $HOME/.vim/vimrc/plugin_settings.vim
 source $HOME/.vim/vimrc/settings.vim
+
 " Source a local vimrc if it exists
 if filereadable(expand("$HOME/.vimrc.local"))
   source $HOME/.vimrc.local
