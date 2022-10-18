@@ -67,6 +67,8 @@ packer.startup({
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
+    use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+
     use {
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
