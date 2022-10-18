@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
+"syntax enable "Willl use treesitter for now
 
 "Ross font
 set gfn=Monaco\ 9
@@ -18,20 +18,7 @@ colorscheme material
 " Always hide the statusline
 set laststatus=2
 
-" If we're not using airline
-if !exists('g:airline_powerline_fonts')
-  " Format the statusline
-  set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L\ \ \
-  set statusline+=%= " right align
-  set statusline+=%{GitBranch()}\
-endif
-
 set cursorline
-
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
-let g:airline_powerline_fonts = 1
 
 " Hide the text below status line
 set noshowmode

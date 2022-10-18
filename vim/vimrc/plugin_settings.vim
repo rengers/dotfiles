@@ -61,12 +61,6 @@ let g:bufExplorerSortBy='name'
 map <leader>o :BufExplorer<cr>
 
 
-" Powerline:
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_dividers_override = ['', '', '', '']
-let g:Powerline_symbols_override = { 'BRANCH': '', 'LINE': '', 'RO': '' }
-
-
 " GitGutter:
 " Sign Column made by solarized color is strange, clear it.
 "highlight clear SignColumn
@@ -82,7 +76,7 @@ let g:markdown_fenced_languages = ['go', 'coffee', 'css', 'erb=eruby', 'python',
 
 
 " Fugitive:
-map <leader>gs :Gstatus<cr>
+map <leader>gs :Git<cr>
 set diffopt+=vertical
 
 " YouCompleteMe:
@@ -101,10 +95,6 @@ let g:clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.d
 " Error and warning signs.
 let g:ale_sign_error = '⤫'
 let g:ale_sign_warning = '⚠'
-" Enable integration with airline.
-let g:airline#extensions#ale#enabled = 1
-let g:airline_highlighting_cache = 1
-
 
 " UndoTree:
 map <F4> :UndotreeToggle<cr>

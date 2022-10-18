@@ -12,22 +12,16 @@ call plug#begin()
 " ----------------
 " Easier vim motions. Try <Leader><Leader>w or <Leader><Leader>fo
 Plug 'Lokaltog/vim-easymotion'
-" Like Command-T or fuzzyfinder. Use to fuzzy find files
-Plug 'kien/ctrlp.vim'
 
 
 " -----------------------
 " --- UI enhancements ---
 " -----------------------
-" Highlight levels of indentation
-Plug 'nathanaelkane/vim-indent-guides'
 " File explorer within Vim
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Ultimate Vim statusline utility
-Plug 'vim-airline/vim-airline'
 " Highlights the matching HTML tag
-Plug 'gregsexton/MatchTag'
+"Plug 'gregsexton/MatchTag'
 
 Plug 'ryanoasis/vim-devicons'
 
@@ -59,18 +53,6 @@ Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-endwise'
 
-" Autocomplete
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"
-" Configure through lua
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'jose-elias-alvarez/null-ls.nvim'
-"Plug 'hrsh7th/cmp-nvim-lsp'
-"Plug 'hrsh7th/cmp-buffer'
-"Plug 'hrsh7th/cmp-path'
-"Plug 'hrsh7th/cmp-cmdline'
-"Plug 'hrsh7th/nvim-cmp'
-
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   "Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
@@ -82,7 +64,6 @@ Plug 'w0rp/ale'
 
 " Language support
 "Plug 'sheerun/vim-polyglot'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'noprompt/vim-yardoc'

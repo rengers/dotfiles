@@ -30,21 +30,6 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 
-"Git branch
-function! GitBranch()
-  try
-    let branch = exists('g:loaded_fugitive') ? substitute(fugitive#statusline(), '\[Git(\([a-z0-9\-_\./:]\+\))\]', '\1', 'gi') : ''
-  catch
-    return ''
-  endtry
-  if branch !=''
-    return 'Branch:'.branch.''
-  en
-
-  return ''
-endfunction
-
-
 function! CurDir()
     return substitute(getcwd(), "$HOME/", "~/", "g")
 endfunction

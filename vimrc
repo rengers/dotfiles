@@ -5,7 +5,6 @@ behave xterm
 filetype off
 source $HOME/.vim/vimrc/plugins.vim
 filetype plugin indent on
-syntax on
 source $HOME/.vim/vimrc/filetypes.vim
 source $HOME/.vim/vimrc/looks.vim
 source $HOME/.vim/vimrc/mappings.vim

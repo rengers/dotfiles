@@ -4,4 +4,3 @@
 
 
  lua require("rengers")
- "source ~/.config/nvim/after_init.lua
