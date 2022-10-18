@@ -54,7 +54,7 @@ export LC_CTYPE="en_US.UTF-8"
 # Customize to your needs...
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
-export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/scripts:$HOME/_scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
