@@ -38,7 +38,7 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 " NERDTree:
 map <F5> :NERDTreeToggle<cr>
-map <leader><leader> :NERDTreeToggle<cr>
+"map <leader><leader> :NERDTreeToggle<cr>
 let NERDTreeHighlightCursorline = 0
 
 " Omnicomplete:

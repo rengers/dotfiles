@@ -17,6 +17,9 @@ local lsp_filetypes = {
     "yaml",
 }
 
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+
 -- Give floating windows borders
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
@@ -211,7 +214,9 @@ lspconfig.sumneko_lua.setup({
 --})
 
 -- Go
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup{
+  on_attach = custom_attach,
+}
 
 -- rust
 lspconfig.rust_analyzer.setup({

@@ -60,10 +60,26 @@ packer.startup({
     use 'RRethy/vim-illuminate' -- Nice auto highlighting
     use "lukas-reineke/indent-blankline.nvim"
 
+    use "kyazdani42/nvim-web-devicons"
+
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
+    use {
+      "folke/trouble.nvim",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function()
+        require("trouble").setup {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        }
+      end
+    }
+
+    use "ggandor/leap.nvim"
 
   end,
   config = {
