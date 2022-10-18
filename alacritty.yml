@@ -114,22 +114,6 @@ font:
     x: 0
     y: 0
 
-  # Thin stroke font rendering (macOS only)
-  #
-  # Thin strokes are suitable for retina displays, but for non-retina you
-  # probably want this set to false.
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
-  use_thin_strokes: false
-
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
 
@@ -197,15 +181,15 @@ colors:
     foreground: '0x839496' # base0
 
   # Normal colors
-  normal:
-    black:   '0x073642' # base02
-    red:     '0xdc322f' # red
-    green:   '0x859900' # green
-    yellow:  '0xb58900' # yellow
-    blue:    '0x268bd2' # blue
-    magenta: '0xd33682' # magenta
-    cyan:    '0x2aa198' # cyan
-    white:   '0xeee8d5' # base2
+  #  normal:
+  #    black:   '0x073642' # base02
+  #    red:     '0xdc322f' # red
+  #    green:   '0x859900' # green
+  #    yellow:  '0xb58900' # yellow
+  #    blue:    '0x268bd2' # blue
+  #    magenta: '0xd33682' # magenta
+  #    cyan:    '0x2aa198' # cyan
+  #    white:   '0xeee8d5' # base2
 
   # Bright colors
   bright:
@@ -217,6 +201,19 @@ colors:
     magenta: '0x6c71c4' # violet
     cyan:    '0x93a1a1' # base1
     white:   '0xfdf6e3' # base3
+
+
+  normal:
+    Black: "0x252525"
+    Red: "0xFF443E"
+    Green: "0xC3D82C"
+    Yellow: "0xFFC135"
+    Blue: "0x42A5F5"
+    Magenta: "0xD81B60"
+    Cyan: "0x00ACC1"
+    White: "0xF5F5F5"
+    Text: "0xA1B0B8"
+    Background: "0x151515"
 
   # Tomorrow Night Bright
   # primary:
@@ -274,7 +271,7 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 1.0
+window.opacity: 1.0
 
 # Key bindings
 #
@@ -392,7 +389,7 @@ mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
-  url:
+  hints:
     # URL launcher
     #
     # This program is executed when clicking on a text which is recognized as a URL.
@@ -452,7 +449,7 @@ live_config_reload: true
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 shell:
-  program: /usr/local/bin/zsh
+  program: /opt/homebrew/bin/zsh
   #args:
   #- --command=tmux
 
