@@ -19,6 +19,7 @@ local lsp_filetypes = {
 
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "gr", vim.lsp.buf.rename, opts)
 
 -- Give floating windows borders
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
@@ -248,6 +249,13 @@ lspconfig.rust_analyzer.setup({
         }
       }
     }
+  },
+})
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = custom_attach,
   },
 })
 

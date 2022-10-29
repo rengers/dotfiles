@@ -35,7 +35,6 @@ Plug 'vim-scripts/SearchComplete'
 " Simple plugin to view most recently used files
 Plug 'vim-scripts/mru.vim'
 Plug 'vim-scripts/bufexplorer.zip'
-Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 
 
