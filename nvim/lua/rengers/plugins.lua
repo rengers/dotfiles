@@ -26,6 +26,11 @@ if not status then
 	return
 end
 
+local status_pu, packer_util = pcall(require, "packer.util")
+if not status_pu then
+	return
+end
+
 -- Packer configuration starts here
 packer.startup({
   function(use)
@@ -42,25 +47,35 @@ packer.startup({
 
     use 'simrat39/rust-tools.nvim'
 
+    -- use "rafamadriz/friendly-snippets" -- This adds a ton of snippets maybe look at later
 
     -- Snippet engine
-    use("L3MON4D3/LuaSnip")
+    use({ "L3MON4D3/LuaSnip", after = "nvim-cmp",
+      config = function()
+        require("rengers.plugin-conf.snippets")
+      end,
+      --module = "luasnip",
+    })
+
 
     use({
       "hrsh7th/nvim-cmp", -- autocomplete
       requires = {
         -- completion sources
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-vsnip",
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-nvim-lsp-signature-help", after = "cmp-nvim-lsp", },
+        { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", },
+        { "hrsh7th/cmp-buffer", after = "nvim-cmp", },
+        { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp", },
         -- complements
-        "onsails/lspkind-nvim", -- add the nice source + completion item kind to the menu
-        "lukas-reineke/cmp-under-comparator", -- better ordering for things with underscores
+        { "onsails/lspkind-nvim", after = "nvim-cmp", }, -- add the nice source + completion item kind to the menu
+        { "lukas-reineke/cmp-under-comparator", after = "nvim-cmp", }, -- better ordering for things with underscores
       },
-      config = function() require("rengers.plugin-conf.completion") end,
-      module = "cmp",
+
+      config = function()
+       -- require("rengers.plugin-conf.completion")
+      end,
+      --module = "cmp",
     })
 
     use("neovim/nvim-lspconfig")
@@ -74,7 +89,7 @@ packer.startup({
 
     use {
       'nvim-lualine/lualine.nvim',
-      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     }
 
     use {
@@ -98,5 +113,11 @@ packer.startup({
       require("packer").sync()
     end
 
-  end
+  end,
+
+  config = {
+    max_jobs = 16,
+    --compile_path = packer_util.join_paths(vim.fn.stdpath('cache'), 'site', 'lua', 'packer_compiled.lua'),
+  },
+
 })
