@@ -4,3 +4,4 @@ vim/plugged
 fonts
 Brewfile.lock.json
 packer_compiled.vim
+nvim/plugin
