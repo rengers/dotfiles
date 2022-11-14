@@ -8,9 +8,9 @@ local make_entry = require "telescope.make_entry"
 local os_sep = Path.path.sep
 local pickers = require "telescope.pickers"
 local scan = require "plenary.scandir"
- 
+
 local my_pickers = {}
- 
+
 my_pickers.live_grep_in_folder = function(opts)
   opts = opts or {}
   local data = {}
@@ -23,7 +23,7 @@ my_pickers.live_grep_in_folder = function(opts)
     end,
   })
   table.insert(data, 1, "." .. os_sep)
- 
+
   pickers.new(opts, {
     prompt_title = "Live Grep no vendor",
     finder = finders.new_table { results = data, entry_maker = make_entry.gen_from_file(opts) },
@@ -48,5 +48,5 @@ my_pickers.live_grep_in_folder = function(opts)
     end,
   }):find()
 end
- 
+
 return my_pickers

@@ -88,7 +88,7 @@ ls.add_snippets(nil, {
       trig = "snip",
       namr = "Snippet",
       dscr = "Create a new Snippet",
-    }, 
+    },
       fmt([[
       snip({{
         trig = "{1}",
