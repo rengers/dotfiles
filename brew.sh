@@ -2,7 +2,7 @@
 set -x
 
 source $HOME/dotfiles/platforms.sh
-is_osx || (echo "Not OSX. Skipping brew install" && exit 0)
+is_osx || { echo "Not OSX. Skipping brew install"; exit 0; }
 
 # Install homebrew
 if [ ! -f /usr/local/bin/brew ]
