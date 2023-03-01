@@ -8,6 +8,7 @@ local lsp_filetypes = {
     "java",
     "javascript",
     "json",
+    "kotlin",
     "lua",
     "perl",
     "python",
@@ -181,7 +182,7 @@ lspconfig.bashls.setup({
 })
 
 -- lua
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     on_attach = custom_attach,
     settings = {
         Lua = {
@@ -256,12 +257,16 @@ lspconfig.rust_analyzer.setup({
   },
 })
 
+-- kotlin
+lspconfig.kotlin_language_server.setup{}
+
 local rt = require("rust-tools")
 rt.setup({
   server = {
     on_attach = custom_attach,
   },
 })
+
 
 
 return {
