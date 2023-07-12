@@ -33,6 +33,11 @@ local conds = require("luasnip.extras.expand_conditions")
 -- You can also use lazy loading so you only get in memory snippets of languages you use
 require("luasnip/loaders/from_vscode").lazy_load() -- You can pass { path = "./my-snippets/"} as well
 
+-- Load snippets from snippet file in config
+local snippets_folder = vim.fn.stdpath "config" .. "/lua/config/snip/snippets/"
+
+require("luasnip.loaders.from_lua").lazy_load { paths = snippets_folder }
+
 ls.setup({
 	history = true,
 	-- Update more often, :h events for more info.

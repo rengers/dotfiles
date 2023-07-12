@@ -64,3 +64,4 @@ require('leap').opts.highlight_unlabeled_phase_one_targets = true
 
 --require("luasnip.loaders.from_vscode").lazy_load()
 
+require("mason").setup()

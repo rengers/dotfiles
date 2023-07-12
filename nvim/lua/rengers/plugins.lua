@@ -45,6 +45,9 @@ packer.startup({
       end,
     })
 
+    use 'williamboman/mason.nvim'    
+    use 'williamboman/mason-lspconfig.nvim'
+
     use 'simrat39/rust-tools.nvim'
 
     -- use "rafamadriz/friendly-snippets" -- This adds a ton of snippets maybe look at later
