@@ -58,6 +58,7 @@ require('lazy').setup({
       -- complements
       "onsails/lspkind-nvim", -- add the nice source + completion item kind to the menu
       "lukas-reineke/cmp-under-comparator", -- better ordering for things with underscores
+      "onsails/lspkind.nvim", -- dev icons for completion
     },
 
     config = function()
@@ -66,9 +67,9 @@ require('lazy').setup({
     --module = "cmp",
   },
 
-  { 
+  {
     "hrsh7th/cmp-nvim-lsp",
-    dependencies = { 
+    dependencies = {
       "hrsh7th/cmp-nvim-lsp-signature-help"
     }
   },
@@ -76,7 +77,7 @@ require('lazy').setup({
   "tpope/vim-fugitive",
 
   -- Language specific
-  "neovim/nvim-lspconfig", 
+  "neovim/nvim-lspconfig",
   "jose-elias-alvarez/null-ls.nvim", -- bridge between LSP client and external formatters/linters, not full fledged language servers
   "fatih/vim-go",
   "rust-lang/rust.vim",
