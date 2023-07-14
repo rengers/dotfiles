@@ -83,7 +83,7 @@ font:
     #family: Retina
     #family: "Roboto Mono for Powerline"
     #family: "RobotoMono Nerd Font"
-    family: "Hack Nerd Font Mono"
+    family: "Hack Nerd Font"
     style: Regular
 
   # The bold font face
