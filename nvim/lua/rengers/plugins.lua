@@ -25,8 +25,19 @@ require('lazy').setup({
   },
 
 
-  'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
+  {
+    'williamboman/mason.nvim',
+    opts = {
+      ensure_installed = {
+        "gopls",
+        "rust-analyzer",
+        "lua-language-server"
+      },
+    },
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim',
+    },
+  },
 
   'simrat39/rust-tools.nvim',
 
@@ -37,13 +48,14 @@ require('lazy').setup({
     "L3MON4D3/LuaSnip",
     dependencies = {
       "nvim-cmp",
-      --"rengers.plugin-conf.snippets"
-    }
+    },
+    config = function()
+      require("rengers.plugin-conf.snippets")
+    end,
   },
 
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.2',
-    -- or                              , branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
@@ -54,17 +66,17 @@ require('lazy').setup({
       "hrsh7th/cmp-nvim-lsp" ,
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
       -- complements
       "onsails/lspkind-nvim", -- add the nice source + completion item kind to the menu
       "lukas-reineke/cmp-under-comparator", -- better ordering for things with underscores
-      "onsails/lspkind.nvim", -- dev icons for completion
     },
 
     config = function()
-      -- require("rengers.plugin-conf.completion")
+       require("rengers.plugin-conf.completion")
     end,
-    --module = "cmp",
   },
 
   {
@@ -76,8 +88,15 @@ require('lazy').setup({
 
   "tpope/vim-fugitive",
 
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("rengers.lsp_config")
+    end,
+  },
+
   -- Language specific
-  "neovim/nvim-lspconfig",
+  { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal"},
   "jose-elias-alvarez/null-ls.nvim", -- bridge between LSP client and external formatters/linters, not full fledged language servers
   "fatih/vim-go",
   "rust-lang/rust.vim",
@@ -112,8 +131,6 @@ require('lazy').setup({
   "preservim/tagbar",
   "mbbill/undotree",
 
-  --'preservim/nerdtree',
-  --'Xuyuanp/nerdtree-git-plugin',
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
 
