@@ -2,12 +2,6 @@ return{
 
   "b0o/schemastore.nvim", -- json schema provider
 
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = function()
-      require('nvim-treesitter.install').update({ with_sync = true })
-    end,
-  },
 
   'simrat39/rust-tools.nvim',
 
@@ -21,28 +15,6 @@ return{
     },
     config = function()
       require("rengers.plugin-conf.snippets")
-    end,
-  },
-
-
-  {
-    "hrsh7th/nvim-cmp", -- autocomplete
-    dependencies = {
-      -- completion sources
-      "hrsh7th/cmp-nvim-lsp" ,
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      'saecki/crates.nvim',
-      -- complements
-      "onsails/lspkind-nvim", -- add the nice source + completion item kind to the menu
-      "lukas-reineke/cmp-under-comparator", -- better ordering for things with underscores
-    },
-
-    config = function()
-       require("rengers.plugin-conf.completion")
     end,
   },
 
