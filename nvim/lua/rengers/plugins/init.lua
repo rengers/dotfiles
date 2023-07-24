@@ -1,19 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
-
-
--- Packer configuration starts here
-require('lazy').setup({
+return{
 
   "b0o/schemastore.nvim", -- json schema provider
 
@@ -22,21 +7,6 @@ require('lazy').setup({
     build = function()
       require('nvim-treesitter.install').update({ with_sync = true })
     end,
-  },
-
-
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        "gopls",
-        "rust-analyzer",
-        "lua-language-server"
-      },
-    },
-    dependencies = {
-      'williamboman/mason-lspconfig.nvim',
-    },
   },
 
   'simrat39/rust-tools.nvim',
@@ -54,10 +24,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'nvim-telescope/telescope.nvim', tag = '0.1.2',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
 
   {
     "hrsh7th/nvim-cmp", -- autocomplete
@@ -69,6 +35,7 @@ require('lazy').setup({
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
+      'saecki/crates.nvim',
       -- complements
       "onsails/lspkind-nvim", -- add the nice source + completion item kind to the menu
       "lukas-reineke/cmp-under-comparator", -- better ordering for things with underscores
@@ -104,40 +71,52 @@ require('lazy').setup({
   "Shougo/ddx.vim",
 
   "RRethy/vim-illuminate", -- Nice auto highlighting
-  "lukas-reineke/indent-blankline.nvim",
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function ()
+      require("indent_blankline").setup {
+        show_current_context = true,
+      }
+    end,
+  },
+
   "henrik/vim-indexed-search", -- show context on matches
 
   "ryanoasis/vim-devicons",
-  "lewis6991/gitsigns.nvim",
+
 
   {
     "nvim-lualine/lualine.nvim",
+    config = function()
+      require('lualine').setup{}
+    end,
     dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
   },
 
   {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
   },
 
-  "ggandor/leap.nvim",
   "preservim/tagbar",
   "mbbill/undotree",
 
-  "nvim-tree/nvim-tree.lua",
-  "nvim-tree/nvim-web-devicons",
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup()
+      vim.api.nvim_set_keymap('n', '<F5>', ":NvimTreeToggle<cr>", { noremap = true, silent = true });
+    end,
+
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
 
   -- Look and theme
-  'bluz71/vim-nightfly-guicolors',
-
-  })
-
+  --{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 
 
+}

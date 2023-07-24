@@ -30,11 +30,23 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { 
 vim.diagnostic.config({
   virtual_text = {
     -- Only display errors w/ virtual text
-    severity = vim.diagnostic.severity.WARN,
+    --severity = vim.diagnostic.severity.INFO,
+    severity = vim.diagnostic.severity.ALL,
     -- Prepend with diagnostic source if there is more than one attached to the buffer
     -- (e.g. (eslint) Error: blah blah blah)
     source = "if_many",
-    signs = false,
+    prefix = "",
+    format = function(diagnostic)
+      local diag_to_format = {
+        [vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
+        [vim.diagnostic.severity.WARN] = { " ", "LspDiagnosticsDefaultWarning" },
+        [vim.diagnostic.severity.INFO] = { " ", "LspDiagnosticsDefaultInfo" },
+        [vim.diagnostic.severity.HINT] = { "󰌶 ", "LspDiagnosticsDefaultHint" },
+      }
+      local res = diag_to_format[diagnostic.severity]
+      return string.format("%s %s", res[1], diagnostic.message)
+    end,
+
   },
   float = {
     severity_sort = true,
@@ -56,6 +68,7 @@ vim.diagnostic.config({
     end,
   },
   severity_sort = true,
+  signs = true,
 })
 
 local custom_attach = function(client, bufnr)
@@ -67,7 +80,7 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.rename, keymap_opts)
 
   -- diagnostics
-  vim.keymap.set("n", "<leader>dk", vim.diagnostic.open_float, keymap_opts) -- diagnostic(s) on current line
+  --vim.keymap.set("n", "<leader>dk", vim.diagnostic.open_float, keymap_opts) -- diagnostic(s) on current line
   vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, keymap_opts) -- move to next diagnostic in buffer
   vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, keymap_opts) -- move to prev diagnostic in buffer
   vim.keymap.set("n", "<leader>da", vim.diagnostic.setqflist, keymap_opts) -- show all buffer diagnostics in qflist
@@ -304,21 +317,21 @@ require("rust-tools").setup(rust_opts)
 lspconfig.kotlin_language_server.setup({})
 
 -- inlay hints
-require("lsp-inlayhints").setup()
-
-vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = "LspAttach_inlayhints",
-  callback = function(args)
-    if not (args.data and args.data.client_id) then
-      return
-    end
-
-    local bufnr = args.buf
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    require("lsp-inlayhints").on_attach(client, bufnr, false)
-  end,
-})
+--require("lsp-inlayhints").setup()
+--
+--vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+--vim.api.nvim_create_autocmd("LspAttach", {
+--  group = "LspAttach_inlayhints",
+--  callback = function(args)
+--    if not (args.data and args.data.client_id) then
+--      return
+--    end
+--
+--    local bufnr = args.buf
+--    local client = vim.lsp.get_client_by_id(args.data.client_id)
+--    require("lsp-inlayhints").on_attach(client, bufnr, false)
+--  end,
+--})
 
 return {
   lsp_filetypes = lsp_filetypes,

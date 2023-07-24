@@ -102,7 +102,7 @@ ls.add_snippets(nil, {
       }},
       fmt([[
       {}
-      ]-]) 
+      ]-])
       ),
       ]], {
       insert(1, "trigger"),

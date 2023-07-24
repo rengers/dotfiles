@@ -3,6 +3,7 @@ local cmp = require('cmp')
 if not cmp then return end
 
 local lspkind = require('lspkind')
+require('crates').setup()
 
 cmp.setup({
   formatting = {
@@ -38,10 +39,11 @@ cmp.setup({
     ['<TAB>'] = cmp.mapping.confirm({ select = true }), -- Tab should accept always
   }),
   sources = cmp.config.sources({
-    { name = "nvim_lsp", max_item_count = 30 }, -- tsserver likes to send back _everything_
+    { name = "nvim_lsp", max_item_count = 30 },
     { name = "nvim_lsp_signature_help" },
     { name = "buffer", keyword_length = 3 }, -- don't complete from buffer right away
     { name = 'luasnip' }, -- For luasnip users.
+    { name = "crates" }, -- rust.io crates
   }, {
     { name = 'buffer' },
   })
