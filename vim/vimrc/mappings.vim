@@ -33,8 +33,8 @@ map <leader>bd :Bclose<cr>
 map <leader>ba :1,300 bd!<cr>
 
 " Use the arrows to something usefull
-map <right> :bn<cr>
-map <left> :bp<cr>
+map <right> l
+map <left> h
 
 " Tab configuration
 map <leader>tn :tabnew! %<cr>
@@ -44,9 +44,6 @@ map <leader>tm :tabmove
 
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
-
-map <F6> :noh<cr>
-
 
 " Fast saving
 nmap <leader>w :w!<cr>

@@ -17,3 +17,4 @@ require("rengers.looks") -- Look and feel
 require("rengers.lsp_config") -- LSP configs
 require("rengers.plugin_setup") -- setup general plugins
 require("rengers.plugin-conf")
+require("rengers.mappings")
