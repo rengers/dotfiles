@@ -58,3 +58,8 @@ vim.keymap.set("n", "<leader>ln", ":lnext<cr>", keymap_opts)
 
 -- Close the current buffer
 vim.keymap.set("n", "<leader>bd", ":Bclose<cr>", keymap_opts)
+
+
+-- Bash like keys for the command line
+vim.keymap.set("c", "<C-a>", "<Home>", {})
+vim.keymap.set("c", "<C-e>", "<End>", {})
