@@ -90,7 +90,12 @@ return{
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
-  "preservim/tagbar",
+  {
+    "preservim/tagbar",
+    config = function()
+      vim.keymap.set("n", "<F8>", ":TagbarToggle", { noremap = true, silent = true })
+    end,
+  },
 
   {
     "mbbill/undotree",

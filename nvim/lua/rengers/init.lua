@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("rengers.utils") -- Some util functions
 require('lazy').setup("rengers.plugins") -- plugins
 
 require("rengers.looks") -- Look and feel

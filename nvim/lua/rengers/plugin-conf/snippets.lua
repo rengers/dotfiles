@@ -94,25 +94,38 @@ ls.add_snippets(nil, {
       namr = "Snippet",
       dscr = "Create a new Snippet",
     },
-      fmt([[
-      snip({{
-        trig = "{1}",
-        namr = "{2}",
-        descr = "{3}",
-      }},
-      fmt([[
-      {}
-      ]-])
-      ),
-      ]], {
+    fmt([[
+    snip({{
+      trig = "{1}",
+      namr = "{2}",
+      descr = "{3}",
+    }},
+    fmt([[
+    {}
+    ]-])
+    ),
+    ]], {
       insert(1, "trigger"),
       rep(1),
       rep(1),
       insert(2, "-- TODO"),
-      })
+    })
+    ),
+    snip({
+      trig = "keymap",
+      namr = "keymap",
+      descr = "Add a lua nvim keymap",
+    },
+    fmt([[
+    vim.keymap.set("n", "{}", "{}", keymap_opts)]],
+    {
+      insert(1, "key"),
+      insert(2, "mappping")
+    })
     ),
   },
 })
+
 
 local cmp = require('cmp')
 if not cmp then return end

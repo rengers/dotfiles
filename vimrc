@@ -6,7 +6,6 @@ filetype off
 filetype plugin indent on
 source $HOME/.vim/vimrc/filetypes.vim
 source $HOME/.vim/vimrc/looks.vim
-source $HOME/.vim/vimrc/mappings.vim
 source $HOME/.vim/vimrc/functions.vim
 source $HOME/.vim/vimrc/misc.vim
 source $HOME/.vim/vimrc/settings.vim
