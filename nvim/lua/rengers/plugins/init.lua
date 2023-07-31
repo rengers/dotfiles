@@ -24,16 +24,6 @@ return{
       "hrsh7th/cmp-nvim-lsp-signature-help"
     }
   },
-
-  {
-    "tpope/vim-fugitive",
-    config = function()
-      vim.api.nvim_set_keymap('n', '<leader>gs', ":Git<cr>", { noremap = true, silent = true });
-      vim.opt.diffopt:append("vertical")
-    end,
-  },
-
-
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -44,18 +34,6 @@ return{
   -- Language specific
   { "lvimuser/lsp-inlayhints.nvim", branch = "anticonceal"},
   "jose-elias-alvarez/null-ls.nvim", -- bridge between LSP client and external formatters/linters, not full fledged language servers
-
-  {
-    "fatih/vim-go",
-    config = function()
-      vim.g.go_fmt_command = "goimports"
-      vim.g.go_def_mapping_enabled = 1
-      vim.g.go_highlight_fields = 1
-      vim.g.go_auto_sameids = 1
-      vim.g.go_highlight_functions = 1
-      vim.g.go_highlight_structs = 1
-    end,
-  },
 
   "rust-lang/rust.vim",
   "kblin/vim-fountain",
@@ -71,12 +49,7 @@ return{
       }
     end,
   },
-
   "henrik/vim-indexed-search", -- show context on matches
-
-  "ryanoasis/vim-devicons",
-
-
   {
     "nvim-lualine/lualine.nvim",
     config = function()
@@ -84,26 +57,22 @@ return{
     end,
     dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
   },
-
   {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
-
   {
     "preservim/tagbar",
     config = function()
       vim.keymap.set("n", "<F8>", ":TagbarToggle", { noremap = true, silent = true })
     end,
   },
-
   {
     "mbbill/undotree",
     config = function()
       vim.api.nvim_set_keymap('n', '<F4>', ":UndotreeToggle<cr>", { noremap = true, silent = true });
     end,
   },
-
   {
     "nvim-tree/nvim-tree.lua",
     config = function()
