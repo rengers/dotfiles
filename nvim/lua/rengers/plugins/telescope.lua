@@ -1,8 +1,14 @@
 return {
   'nvim-telescope/telescope.nvim', tag = '0.1.2',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'gbprod/yanky.nvim',
+  },
 
   config = function()
+
+    --extensions
+    require("telescope").load_extension("yank_history")
 
     -- key bindings
     local keymap_opts = { buffer = false, silent = true, noremap = true }
