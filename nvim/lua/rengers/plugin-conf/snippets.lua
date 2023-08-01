@@ -94,7 +94,7 @@ ls.add_snippets(nil, {
       namr = "Snippet",
       dscr = "Create a new Snippet",
     },
-    fmt([[
+    fmt([=[
     snip({{
       trig = "{1}",
       namr = "{2}",
@@ -102,9 +102,9 @@ ls.add_snippets(nil, {
     }},
     fmt([[
     {}
-    ]-])
+    ]])
     ),
-    ]], {
+    ]=], {
       insert(1, "trigger"),
       rep(1),
       rep(1),
@@ -116,11 +116,25 @@ ls.add_snippets(nil, {
       namr = "keymap",
       descr = "Add a lua nvim keymap",
     },
-    fmt([[
-    vim.keymap.set("n", "{}", "{}", keymap_opts)]],
+    fmt([[vim.keymap.set("n", "{}", "{}", keymap_opts)]],
     {
       insert(1, "key"),
       insert(2, "mappping")
+    })
+    ),
+  },
+  go = {
+    snip({
+      trig = "iferr",
+      namr = "if err not nil",
+      descr = "if block checking for non-nil error",
+    },
+    fmt([[
+    if err != nil {{
+      {}
+    }}
+    ]], {
+      insert(1, "return err")
     })
     ),
   },
