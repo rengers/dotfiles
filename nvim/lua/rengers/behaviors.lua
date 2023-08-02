@@ -35,7 +35,6 @@ vim.opt.magic = true
 -- No sound on errors
 vim.opt.errorbells = false
 vim.opt.visualbell = false
-vim.opt.t_vb = ""
 
 -- Timeouts and updates
 vim.opt.timeoutlen = 500
