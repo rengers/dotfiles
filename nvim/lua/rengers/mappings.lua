@@ -1,4 +1,5 @@
--- First, map the terminal's escape sequence to <C-Left> (with recursive mapping)
+require("rengers.utils")
+
 local keymap_opts = { buffer = false, silent = true, noremap = true }
 
 vim.g.mapleader = ","
@@ -62,3 +63,15 @@ vim.keymap.set("n", "<leader>bd", ":Bclose<cr>", keymap_opts)
 -- Bash like keys for the command line
 vim.keymap.set("c", "<C-a>", "<Home>", {})
 vim.keymap.set("c", "<C-e>", "<End>", {})
+
+-- Key mappings for ToggleList
+vim.api.nvim_set_keymap('n', '<leader>ll', [[<Cmd>lua ToggleList("Location List", 'l')<CR>]], {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ql', [[<Cmd>lua ToggleList("Quickfix List", 'c')<CR>]], {silent = true})
+
+-- Key mapping for JSON formatting
+vim.api.nvim_set_keymap("n", "=j", ":%!python -m json.tool<CR>", { silent = true })
+
+-- Key mappings for profiling
+vim.api.nvim_set_keymap("n", "<leader>p", ":lua StartProfiling()<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<leader>sp", ":exe \":profile pause\"<CR>:noautocmd qall!<CR>", { silent = true })
+

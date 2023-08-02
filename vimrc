@@ -4,7 +4,6 @@ set nocompatible
 behave xterm
 filetype off
 filetype plugin indent on
-source $HOME/.vim/vimrc/functions.vim
 
 " Source a local vimrc if it exists
 if filereadable(expand("$HOME/.vimrc.local"))
