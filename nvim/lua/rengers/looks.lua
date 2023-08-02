@@ -6,6 +6,17 @@ vim.wo.cursorline = true
 vim.opt.showmode = false
 vim.opt.foldlevel = 99
 
+-- Set 7 lines to the cursor - when moving vertically
+vim.opt.so = 7
+
+vim.opt.ruler = true -- Always show current position
+
+-- The command bar height
+vim.opt.cmdheight = 2
+
+-- Show matching brackets when text indicator is over them
+vim.opt.showmatch = true
+vim.opt.mat = 2 -- How many tenths of a second to blink
 
 -- Highlight trailing space
 vim.cmd("highlight ExtraWhitespace ctermbg=red guibg=red")
