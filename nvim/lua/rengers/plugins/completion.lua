@@ -20,6 +20,8 @@ return {
 
     local lspkind = require('lspkind')
 
+    require('crates').setup()
+
     cmp.setup({
       formatting = {
         format = lspkind.cmp_format({

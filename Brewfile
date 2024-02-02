@@ -25,6 +25,7 @@ brew "vim"
 brew "watch"
 brew "wget"
 brew "zsh"
+brew "1password-cli"
 
 # Language related
 brew "jenv"

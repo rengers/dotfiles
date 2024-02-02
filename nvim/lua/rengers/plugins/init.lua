@@ -43,17 +43,16 @@ return{
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     config = function ()
-      require("indent_blankline").setup {
-        show_current_context = true,
-      }
+      require("ibl").setup()
     end,
   },
   "henrik/vim-indexed-search", -- show context on matches
   {
     "nvim-lualine/lualine.nvim",
     config = function()
-      require('lualine').setup{}
+      require('lualine').setup()
     end,
     dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
   },

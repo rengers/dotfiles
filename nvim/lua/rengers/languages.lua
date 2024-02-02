@@ -25,3 +25,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   group = git_commit_group
 })
+
+--let g:python3_host_prog = "/Users/rengers/.pyenv/shims/python3"
+vim.g.python3_host_prog = '/Users/rengers/.pyenv/shims/python3'
