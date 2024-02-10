@@ -9,6 +9,7 @@ return {
 
     --extensions
     require("telescope").load_extension("yank_history")
+    require("telescope").load_extension("notify")
 
     -- key bindings
     local keymap_opts = { buffer = false, silent = true, noremap = true }

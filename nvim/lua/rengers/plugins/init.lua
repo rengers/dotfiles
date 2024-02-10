@@ -50,20 +50,13 @@ return{
   },
   "henrik/vim-indexed-search", -- show context on matches
   {
-    "nvim-lualine/lualine.nvim",
-    config = function()
-      require('lualine').setup()
-    end,
-    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
-  },
-  {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
     "preservim/tagbar",
     config = function()
-      vim.keymap.set("n", "<F8>", ":TagbarToggle", { noremap = true, silent = true })
+      vim.keymap.set("n", "<F8>", ":TagbarToggle<cr>", { noremap = true, silent = true })
     end,
   },
   {
@@ -86,7 +79,8 @@ return{
 
   -- Look and theme
   --{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+  "rcarriga/nvim-notify",
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 
 }

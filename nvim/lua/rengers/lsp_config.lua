@@ -38,10 +38,14 @@ vim.diagnostic.config({
     prefix = "",
     format = function(diagnostic)
       local diag_to_format = {
-        [vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
-        [vim.diagnostic.severity.WARN] = { " ", "LspDiagnosticsDefaultWarning" },
-        [vim.diagnostic.severity.INFO] = { " ", "LspDiagnosticsDefaultInfo" },
-        [vim.diagnostic.severity.HINT] = { "󰌶 ", "LspDiagnosticsDefaultHint" },
+        [vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
+        [vim.diagnostic.severity.WARN] = { "  ", "LspDiagnosticsDefaultWarning" },
+        [vim.diagnostic.severity.INFO] = { "󰋼 ", "LspDiagnosticsDefaultInfo" },
+        [vim.diagnostic.severity.HINT] = { "󰛩 ", "LspDiagnosticsDefaultHint" },
+        --[vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
+        --[vim.diagnostic.severity.WARN] = { " ", "LspDiagnosticsDefaultWarning" },
+        --[vim.diagnostic.severity.INFO] = { " ", "LspDiagnosticsDefaultInfo" },
+        --[vim.diagnostic.severity.HINT] = { "󰌶 ", "LspDiagnosticsDefaultHint" },
       }
       local res = diag_to_format[diagnostic.severity]
       return string.format("%s %s", res[1], diagnostic.message)
