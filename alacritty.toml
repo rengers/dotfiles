@@ -1,0 +1,42 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+import = [
+  "~/.config/alacritty/catppuccin/catppuccin-macchiato.toml",
+  #"~/.config/alacritty/catppuccin/catppuccin-mocha.toml",
+  ]
+
+[cursor]
+style = "Block"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "Hack Nerd Font Propo"
+style = "Regular"
+
+[font.bold]
+family = "Hack Nerd Font Propo"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font Propo"
+style = "Italic"
+
+[font.bold_italic]
+family = "Hack Nerd Font Propo"
+style = "BoldItalic"
+
+[window]
+startup_mode = "Windowed"
+dynamic_padding = true
+opacity = 1.0
+
+[window.padding]
+x = 6
+y = 0
+
+[scrolling]
+history = 10000
+
+[debug]
+render_timer = false
