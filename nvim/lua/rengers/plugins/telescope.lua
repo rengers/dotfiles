@@ -14,14 +14,15 @@ return {
     -- key bindings
     local keymap_opts = { buffer = false, silent = true, noremap = true }
     vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<cr>", keymap_opts)
+    vim.keymap.set("n", "<leader>gg", ":Telescope live_grep<cr>", keymap_opts)
     vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", keymap_opts)
     vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>", keymap_opts)
+    vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>", keymap_opts)
 
     local function telescope_grep()
       vim.cmd('Telescope live_grep default_text=' .. vim.fn.expand('<cword>'))
     end
-    vim.keymap.set("n", "<leader>gg", telescope_grep, keymap_opts)
+    vim.keymap.set("n", "<leader>wg", telescope_grep, keymap_opts)
 
   end,
 }
