@@ -38,6 +38,7 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", keymap_opts)
 
 -- Fast saving
 vim.keymap.set("n", "<leader>w", ":w!<cr>", keymap_opts)
+vim.keymap.set("n", "<leader>W", ":silent w !sudo tee % > /dev/null<cr>", keymap_opts)
 
 -- Fast editing of the .vimrc
 vim.keymap.set("n", "<leader>e", ":e! ~/.vim/vimrc<cr>", keymap_opts)

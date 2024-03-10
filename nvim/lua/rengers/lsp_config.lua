@@ -201,6 +201,21 @@ lspconfig.bashls.setup({
   on_attach = custom_attach,
 })
 
+-- nix
+lspconfig.nil_ls.setup{}
+
+-- dockerfile
+lspconfig.dockerls.setup{}
+
+-- docker-compose
+lspconfig.docker_compose_language_service.setup{}
+
+-- ruby
+lspconfig.solargraph.setup{}
+
+-- toml
+lspconfig.taplo.setup{}
+
 -- lua
 lspconfig.lua_ls.setup({
   on_attach = custom_attach,

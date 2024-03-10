@@ -69,3 +69,9 @@ function StartProfiling()
   vim.cmd("profile func *")
   vim.cmd("profile file *")
 end
+
+function onNix()
+  return vim.fn.executable("nix") == 1
+end
+
+
