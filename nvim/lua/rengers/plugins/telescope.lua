@@ -19,6 +19,8 @@ return {
     vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>", keymap_opts)
     vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>", keymap_opts)
 
+    vim.keymap.set("n", "<leader>e", ":Telescope find_files search_dirs=~/dotfiles<cr>", keymap_opts)
+
     local function telescope_grep()
       vim.cmd('Telescope live_grep default_text=' .. vim.fn.expand('<cword>'))
     end

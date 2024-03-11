@@ -40,9 +40,6 @@ vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", keymap_opts)
 vim.keymap.set("n", "<leader>w", ":w!<cr>", keymap_opts)
 vim.keymap.set("n", "<leader>W", ":silent w !sudo tee % > /dev/null<cr>", keymap_opts)
 
--- Fast editing of the .vimrc
-vim.keymap.set("n", "<leader>e", ":e! ~/.vim/vimrc<cr>", keymap_opts)
-
 -- Undo and redo in insert mode
 vim.keymap.set("i", "<C-u>", "<C-o>u", keymap_opts)
 vim.keymap.set("i", "<C-y>", "<C-o><C-R>", keymap_opts)
