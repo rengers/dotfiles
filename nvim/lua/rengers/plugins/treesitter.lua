@@ -6,6 +6,7 @@ return {
     "windwp/nvim-ts-autotag", -- auto rename html tags etc
     "JoosepAlviste/nvim-ts-context-commentstring", -- understand embedded comments
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/playground", -- not a dependency but useful for inspecting the AST
   },
 
   build = function()
@@ -24,6 +25,8 @@ return {
         "comment",
         "cpp",
         "css",
+        "diff",
+        "gitcommit",
         "go",
         "html",
         "javascript",
@@ -39,6 +42,12 @@ return {
         "typescript",
         "yaml",
       },
+      sync_install = false,
+      modules = {},
+      ignore_install = {},
+      auto_install = true,
+      additional_vim_regex_highlighting = false,
+
       highlight = {
         -- false will disable the whole extension
         enable = true,

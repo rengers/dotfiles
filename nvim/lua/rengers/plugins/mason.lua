@@ -3,6 +3,7 @@ return {
   enabled = not onNix(),
   opts = {
     ensure_installed = {
+      "clangd",
       "gopls",
       "rust-analyzer",
       "lua-language-server"

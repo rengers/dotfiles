@@ -8,7 +8,7 @@ import = [
 style = "Block"
 
 [font]
-size = 11.0
+size = 14.0
 
 [font.normal]
 family = "Hack Nerd Font Propo"

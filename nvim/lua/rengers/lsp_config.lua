@@ -122,7 +122,7 @@ null_ls.setup({
     null_ls.builtins.formatting.eslint_d,
 
     --#diagnostics/linters
-    null_ls.builtins.diagnostics.flake8,
+    null_ls.builtins.diagnostics.flake8.with({extra_args = {"--max-line-length","105"}}),
     null_ls.builtins.diagnostics.eslint_d,
 
     --#code actions
@@ -157,7 +157,7 @@ lspconfig.pyright.setup({
 })
 
 -- typescript
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   on_attach = function(client, bufnr)
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup({
@@ -216,6 +216,17 @@ lspconfig.solargraph.setup{}
 -- toml
 lspconfig.taplo.setup{}
 
+-- latex
+lspconfig.texlab.setup({
+  on_attach = custom_attach,
+})
+
+-- c clangd
+lspconfig.clangd.setup({
+  on_attach = custom_attach,
+  arguments = { "-Wall" },
+})
+
 -- lua
 lspconfig.lua_ls.setup({
   on_attach = custom_attach,
@@ -272,6 +283,7 @@ lspconfig.gopls.setup({
         shadow = true,
       },
       staticcheck = true,
+      gofumpt = true,
       hints = {
         assignVariableTypes = true,
         compositeLiteralFields = true,

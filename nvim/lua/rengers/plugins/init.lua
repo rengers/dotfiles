@@ -50,10 +50,6 @@ return{
   },
   "henrik/vim-indexed-search", -- show context on matches
   {
-    "folke/trouble.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-  },
-  {
     "preservim/tagbar",
     config = function()
       vim.keymap.set("n", "<F8>", ":TagbarToggle<cr>", { noremap = true, silent = true })

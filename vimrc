@@ -1,7 +1,7 @@
 " Ross vimrc
 "
 set nocompatible
-behave xterm
+"behave xterm
 filetype off
 filetype plugin indent on
 

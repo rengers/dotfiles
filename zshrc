@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 export LC_CTYPE="en_US.UTF-8"
 
 # Customize to your needs...
-export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin:$PATH
 
 export PATH="$HOME/scripts:$HOME/_scripts:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -90,9 +90,6 @@ PATH=/opt/homebrew/bin:$PATH
 # Load rbenv
 eval "$(rbenv init --no-rehash - zsh)"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # Load direnv
 eval "$(direnv hook zsh)"
 
@@ -118,6 +115,9 @@ fi
 
 # Load rust
 source $HOME/.cargo/env
+
+# Gstreamer
+export PATH=/Library/Frameworks/GStreamer.framework/Versions/Current/bin:$PATH
 
 #source /usr/local/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # Turn off profiling

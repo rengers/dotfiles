@@ -39,9 +39,17 @@ vim.api.nvim_create_autocmd("BufWinLeave", { pattern = "*", callback = clear_ext
 
 
 -- Ported from old config to set 24-bit RGB
-if vim.o.termguicolors then
-  vim.o.t_8f = "\\e[38;2;%lu;%lu;%lum"
-  vim.o.t_8b = "\\e[48;2;%lu;%lu;%lum"
-  vim.o.termguicolors = true
-end
+--if vim.o.termguicolors then
+  --vim.o.t_8f = "\\e[38;2;%lu;%lu;%lum"
+  --vim.o.t_8b = "\\e[48;2;%lu;%lu;%lum"
+  --vim.o.termguicolors = true
+--end
 
+-- Enable true color support
+vim.opt.termguicolors = true
+
+-- Set the ANSI color codes for 24-bit color in the terminal using Vimscript
+vim.cmd [[
+  let &t_8f = "\e[38;2;%lu;%lu;%lum"
+  let &t_8b = "\e[48;2;%lu;%lu;%lum"
+]]
