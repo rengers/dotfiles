@@ -26,3 +26,5 @@
 [amazon]
 	append-cr-url = true
 	pull-request-by-default = true
+[url "ssh://git.amazon.com"]
+	insteadOf = https://git.amazon.com
