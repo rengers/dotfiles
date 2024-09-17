@@ -28,10 +28,11 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { 
 
 -- Configure diagnostic display
 vim.diagnostic.config({
+  severity_sort = true,
+  signs = true,
   virtual_text = {
-    -- Only display errors w/ virtual text
-    --severity = vim.diagnostic.severity.INFO,
-    severity = vim.diagnostic.severity.ALL,
+    -- Only display warn and above with virtual text
+    severity = vim.diagnostic.severity.WARN,
     -- Prepend with diagnostic source if there is more than one attached to the buffer
     -- (e.g. (eslint) Error: blah blah blah)
     source = "if_many",
@@ -39,7 +40,7 @@ vim.diagnostic.config({
     format = function(diagnostic)
       local diag_to_format = {
         [vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
-        [vim.diagnostic.severity.WARN] = { "  ", "LspDiagnosticsDefaultWarning" },
+        [vim.diagnostic.severity.WARN] = { " ", "LspDiagnosticsDefaultWarning" },
         [vim.diagnostic.severity.INFO] = { "󰋼 ", "LspDiagnosticsDefaultInfo" },
         [vim.diagnostic.severity.HINT] = { "󰛩 ", "LspDiagnosticsDefaultHint" },
         --[vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
@@ -50,35 +51,37 @@ vim.diagnostic.config({
       local res = diag_to_format[diagnostic.severity]
       return string.format("%s %s", res[1], diagnostic.message)
     end,
-
   },
   float = {
     severity_sort = true,
     source = "if_many",
     border = "rounded",
-    header = {
-      "",
-      "LspDiagnosticsDefaultWarning",
-    },
+    --header = {
+    --  "",
+    --  "LspDiagnosticsDefaultWarning",
+    --},
     prefix = function(diagnostic)
       local diag_to_format = {
-        [vim.diagnostic.severity.ERROR] = { "Error", "LspDiagnosticsDefaultError" },
-        [vim.diagnostic.severity.WARN] = { "Warning", "LspDiagnosticsDefaultWarning" },
-        [vim.diagnostic.severity.INFO] = { "Info", "LspDiagnosticsDefaultInfo" },
-        [vim.diagnostic.severity.HINT] = { "Hint", "LspDiagnosticsDefaultHint" },
+        --[vim.diagnostic.severity.ERROR] = { "Error", "LspDiagnosticsDefaultError" },
+        --[vim.diagnostic.severity.WARN] = { "Warning", "LspDiagnosticsDefaultWarning" },
+        --[vim.diagnostic.severity.INFO] = { "Info", "LspDiagnosticsDefaultInfo" },
+        --[vim.diagnostic.severity.HINT] = { "Hint", "LspDiagnosticsDefaultHint" },
+        [vim.diagnostic.severity.ERROR] = { " ", "LspDiagnosticsDefaultError" },
+        [vim.diagnostic.severity.WARN] = { " ", "LspDiagnosticsDefaultWarning" },
+        [vim.diagnostic.severity.INFO] = { "󰋼 ", "LspDiagnosticsDefaultInfo" },
+        [vim.diagnostic.severity.HINT] = { "󰛩 ", "LspDiagnosticsDefaultHint" },
       }
       local res = diag_to_format[diagnostic.severity]
       return string.format("(%s) ", res[1]), res[2]
     end,
   },
-  severity_sort = true,
-  signs = true,
 })
 
 local custom_attach = function(client, bufnr)
   local keymap_opts = { buffer = bufnr, silent = true, noremap = true }
   -- LSP mappings (only apply when LSP client attached)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, keymap_opts)
+  vim.keymap.set("n", "T", vim.diagnostic.open_float, keymap_opts)
   vim.keymap.set("n", "<c-]>", vim.lsp.buf.definition, keymap_opts)
   vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, keymap_opts)
   vim.keymap.set("n", "gr", vim.lsp.buf.rename, keymap_opts)
@@ -89,7 +92,7 @@ local custom_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, keymap_opts) -- move to prev diagnostic in buffer
   vim.keymap.set("n", "<leader>da", vim.diagnostic.setqflist, keymap_opts) -- show all buffer diagnostics in qflist
   --vim.keymap.set("n", "H", vim.lsp.buf.code_action, keymap_opts) -- code actions (handled by telescope-ui-select)
-  vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, keymap_opts)        -- manual formatting, because sometimes they just decide to stop working
+  vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, keymap_opts)       -- manual formatting, because sometimes they just decide to stop working
 
   -- use omnifunc
   vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -122,7 +125,7 @@ null_ls.setup({
     null_ls.builtins.formatting.eslint_d,
 
     --#diagnostics/linters
-    null_ls.builtins.diagnostics.flake8.with({extra_args = {"--max-line-length","105"}}),
+    null_ls.builtins.diagnostics.flake8.with({ extra_args = { "--max-line-length", "105" } }),
     null_ls.builtins.diagnostics.eslint_d,
 
     --#code actions
@@ -347,22 +350,6 @@ require("rust-tools").setup(rust_opts)
 -- kotlin
 lspconfig.kotlin_language_server.setup({})
 
--- inlay hints
---require("lsp-inlayhints").setup()
---
---vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
---vim.api.nvim_create_autocmd("LspAttach", {
---  group = "LspAttach_inlayhints",
---  callback = function(args)
---    if not (args.data and args.data.client_id) then
---      return
---    end
---
---    local bufnr = args.buf
---    local client = vim.lsp.get_client_by_id(args.data.client_id)
---    require("lsp-inlayhints").on_attach(client, bufnr, false)
---  end,
---})
 
 return {
   lsp_filetypes = lsp_filetypes,
