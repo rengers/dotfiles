@@ -70,8 +70,9 @@ function StartProfiling()
   vim.cmd("profile file *")
 end
 
-function onNix()
-  return vim.fn.executable("nix") == 1
+function OnNix()
+  return vim.fn.executable("uname --operating-system") == "GNU/Linux" and
+      vim.fn.executable("nix") == 1
 end
 
 

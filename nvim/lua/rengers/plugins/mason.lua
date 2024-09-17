@@ -1,6 +1,6 @@
 return {
   'williamboman/mason.nvim',
-  enabled = not onNix(),
+  enabled = not OnNix(),
   opts = {
     ensure_installed = {
       "clangd",
@@ -35,7 +35,7 @@ return {
         "rust_analyzer",
         "solargraph",
         "taplo",
-        "tsserver",
+        "ts_ls",
         "yamlls"
       },
     })
