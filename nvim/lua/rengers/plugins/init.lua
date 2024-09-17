@@ -61,17 +61,6 @@ return{
       vim.api.nvim_set_keymap('n', '<F4>', ":UndotreeToggle<cr>", { noremap = true, silent = true });
     end,
   },
-  {
-    "nvim-tree/nvim-tree.lua",
-    config = function()
-      require("nvim-tree").setup()
-      vim.api.nvim_set_keymap('n', '<F5>', ":NvimTreeToggle<cr>", { noremap = true, silent = true });
-    end,
-
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
 
   -- Look and theme
   --{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
