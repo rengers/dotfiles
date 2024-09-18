@@ -57,10 +57,17 @@ in
 
     shellAliases = {
       ll = "ls -l";
+      cp      = "cp -iv";
       nupdate = "cd /etc/nixos && sudo nix flake update && cd -";
       nswitch = "sudo nixos-rebuild switch --upgrade --flake /etc/nixos#nixos";
       gs = "git status";
       gd = "git diff";
+      gc = "git commit";
+      sz = "source ~/.zshrc";
+      nim = "nvim";
+      ez = "nim ~/.zshrc";
+      da = "direnv allow";
+      awswho = "aws sts get-caller-identity";
     };
     history = {
       size = 10000;
@@ -69,6 +76,20 @@ in
     };
     initExtra= ''
       bindkey '^R' history-incremental-search-backward
+      bindkey -e
+      # Navigate words with ctrl+arrow keys
+      bindkey '^[Oc' forward-word                                     #
+      bindkey '^[Od' backward-word                                    #
+      bindkey '^[[1;5D' backward-word                                 #
+      bindkey '^[[1;5C' forward-word                                  #
+      bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+      bindkey '^[[Z' undo                                             # Shift+tab undo last action
+      bindkey "\e[3~" delete-char                                     # bind delete to delete
+
+      # Load rust
+      if [ -f $HOME/.cargo/env ]; then
+        source $HOME/.cargo/env
+      fi
     '';
       #bindkey '^I' history-incremental-search-forward
   };
@@ -86,8 +107,21 @@ in
   # Starship prompt setup
   programs.starship = {
     enable = true;
-    settings = {
-      format = "[](surface0)$os$username[](bg:peach fg:surface0)$directory[](fg:peach bg:green)$git_branch$git_status[](fg:green bg:teal)$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$rust$scala[](fg:teal bg:blue)$docker_context[](fg:blue bg:purple)$time[ ](fg:purple)$line_break$character";
+    settings =
+      let
+        lib = pkgs.lib;
+        formatString = lib.concatStrings [
+      "[](surface0)$os[](bg:surface0)"
+      "$time[](bg:peach fg:surface0)"
+      "$directory[](fg:peach bg:green)"
+      "$git_branch$git_status[](fg:green bg:teal)"
+      "$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$rust$scala[](fg:teal bg:blue)"
+      "$docker_context[](fg:blue bg:surface0)"
+      "$line_break"
+      "$character"
+      ];
+      in{
+      format = "${formatString}";
       add_newline = false;
 
       username = {
@@ -101,11 +135,16 @@ in
       os = {
         style = "bg:surface0";
         disabled = false;
+        symbols = {
+          "Macos" = " ";
+          #"NixOS" = " ";
+        };
       };
 
       directory = {
         style = "fg:mantle bg:peach";
-        format = "[ $path ]($style)";
+        #format = "[ $path ]($style)";
+        format = "[  $path ]($style)[$read_only]($read_only_style)";
         truncation_length = 3;
         truncation_symbol = ".../";
         substitutions = {
@@ -117,6 +156,12 @@ in
         };
       };
 
+      cmd_duration = {
+        format = "[  $duration ]($style)";
+          style = "fg:text bg:surface0";
+      };
+
+
       git_branch = {
         symbol = "";
         style = "bg:teal";
@@ -125,13 +170,13 @@ in
 
       git_status = {
         style = "bg:teal";
-        format = "[[($all_status$ahead_behind )](fg:base bg:green)]($style)";
+        format = "[[( $all_status$ahead_behind )](fg:base bg:green)]($style)";
       };
 
       docker_context = {
         symbol = "";
-        style = "bg:mantle";
-        format = "[$symbol $context]($style)";
+        style = "bg:blue";
+        format = "[ $symbol $context]($style)";
       };
 
       # Programming Languages
@@ -217,8 +262,10 @@ in
       time = {
         disabled = false;
         time_format = "%R";  # Hour:Minute Format
-        style = "bg:peach";
-        format = "[[  $time ](fg:mantle bg:purple)]($style)";
+        #style = "bg:peach";
+        style = "bg:surface0 fg:text";
+        #format = "[[  $time ](fg:mantle bg:purple)]($style)";
+        format = "[  $time ]($style)";
       };
 
       line_break = {
@@ -301,6 +348,22 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  home.sessionPath= [
+    "/usr/sbin:/usr/bin:/sbin:/bin"
+      "/usr/local/sbin"
+      "/usr/local/bin"
+      "/opt/homebrew/sbin"
+      "/opt/homebrew/bin"
+      "$HOME/scripts"
+      "$HOME/_scripts"
+      "$HOME/.rbenv/bin"
+      "$HOME/bin"
+      "$HOME/.pyenv"
+      "$PYENV_ROOT/bin"
+      "/Library/Frameworks/GStreamer.framework/Versions/Current/bin"
+      "$HOME/.toolbox/bin"
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
