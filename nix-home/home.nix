@@ -111,17 +111,22 @@ in
       let
         lib = pkgs.lib;
         formatString = lib.concatStrings [
-      "[](surface0)$os[](bg:surface0)"
-      "$time[](bg:peach fg:surface0)"
+      "[](surface0)$os"
+      "$custom"
+      #"[](bg:surface0)"
+      "[](bg:peach fg:surface0)"
       "$directory[](fg:peach bg:green)"
-      "$git_branch$git_status[](fg:green bg:teal)"
-      "$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$rust$scala[](fg:teal bg:blue)"
-      "$docker_context[](fg:blue bg:surface0)"
-      "$line_break"
-      "$character"
+      "$git_branch$git_status"
+      "$git_metrics[](fg:green bg:teal)"
+      "$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$ruby$rust$scala[](fg:teal bg:blue)"
+      "$docker_context$nix_shell$aws[](fg:blue bg:surface0) "
+      #"$line_break"
+      #"$character"
       ];
       in{
       format = "${formatString}";
+
+      right_format ="[](surface0)$character[](bg:surface0)$cmd_duration$time";
       add_newline = false;
 
       username = {
@@ -138,13 +143,36 @@ in
         symbols = {
           "Macos" = " ";
           #"NixOS" = " ";
+          #"NixOS" = "❄️";
         };
+      };
+
+      custom.ssh_no_keys = {
+        disabled = false;
+          description = "SSH missing keys";
+          when = "ssh-add -l | grep -q 'no identities'";
+          command = "echo 🚫";
+          format = "[$symbol $output]($style)";
+          shell = ["bash" "--noprofile" "--norc"];
+          symbol = "🔑";
+          style = "bold fg:red bg:surface0";
+      };
+
+      custom.ssh_keys = {
+        disabled = false;
+        description = "SSH key count";
+        when = "ssh-add -l | grep -v -q 'no identities'";
+        command = "ssh-add -l | grep -v 'no identities' | wc -l";
+        format = "[$symbol $output]($style)";
+        shell = ["bash" "--noprofile" "--norc"];
+        symbol = "🔑";
+        style = "bold fg:green bg:surface0";
       };
 
       directory = {
         style = "fg:mantle bg:peach";
         #format = "[ $path ]($style)";
-        format = "[  $path ]($style)[$read_only]($read_only_style)";
+        format = "[  $path ]($style)[$read_only]($style)";
         truncation_length = 3;
         truncation_symbol = ".../";
         substitutions = {
@@ -157,8 +185,8 @@ in
       };
 
       cmd_duration = {
-        format = "[  $duration ]($style)";
-          style = "fg:text bg:surface0";
+        format = "[ $duration  ]($style)";
+        style = "fg:text bg:surface0";
       };
 
 
@@ -173,10 +201,23 @@ in
         format = "[[( $all_status$ahead_behind )](fg:base bg:green)]($style)";
       };
 
+      git_metrics = {
+        added_style = "bold blue bg:green";
+        deleted_style = "bold red bg:green";
+        format = "[+$added]($added_style)[/](fg:base bg:green)[-$deleted]($deleted_style)[ ](bg:green)";
+        disabled = false;
+      };
+
       docker_context = {
         symbol = "";
         style = "bg:blue";
         format = "[ $symbol $context]($style)";
+      };
+
+      aws = {
+        style = "bg:blue";
+        symbol = " ";
+        format = "[ [$symbol](fg:peach bg:blue)($profile )(\\($region\\) )(\\[$duration\\] )]($style)";
       };
 
       # Programming Languages
@@ -203,7 +244,7 @@ in
       golang = {
         symbol = "";
         style = "bg:teal";
-        format = "[[ $symbol( $version) ](fg:base bg:teal)]($style)";
+        format = "[[ $symbol](fg:blue bg:teal)( [$version](fg:base bg:teal)) ]($style)";
       };
 
       gradle = {
@@ -247,6 +288,12 @@ in
         format = "[[ $symbol( $version) ](fg:base bg:teal)]($style)";
       };
 
+      ruby = {
+        symbol = "💎";
+        style = "bg:teal";
+        format = "[[ $symbol( $version) ](fg:base bg:teal)]($style)";
+      };
+
       rust = {
         symbol = "";
         style = "bg:teal";
@@ -261,10 +308,8 @@ in
 
       time = {
         disabled = false;
-        time_format = "%R";  # Hour:Minute Format
-        #style = "bg:peach";
+        time_format = "%T";  # Hour:Minute:Second Format
         style = "bg:surface0 fg:text";
-        #format = "[[  $time ](fg:mantle bg:purple)]($style)";
         format = "[  $time ]($style)";
       };
 
@@ -304,11 +349,11 @@ in
         };
       };
 
-
       character = {
         disabled = false;
-        success_symbol = "[](bold fg:green)";
-        error_symbol = "[](bold fg:red)";
+        success_symbol = "[✔ ](bold fg:green bg:surface0)";
+        error_symbol = "[✔ ](bold fg:red bg:surface0)";
+        format = "$symbol";
       };
     };
   };
