@@ -16,6 +16,7 @@ vim.api.nvim_command('filetype plugin indent on')
 require("rengers.utils") -- Some util functions
 require("rengers.mappings")
 
+vim.opt.termguicolors = true -- Must be enabled before colorizer plugin is loaded
 require('lazy').setup("rengers.plugins") -- plugins
 
 require("rengers.looks") -- Look and feel

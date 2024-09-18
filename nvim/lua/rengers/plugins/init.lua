@@ -65,7 +65,16 @@ return{
   -- Look and theme
   --{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
   "rcarriga/nvim-notify",
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "catppuccin/nvim", name = "catppuccin", priority = 1000
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require('colorizer').setup()
+    end,
+  }
+
 
 
 }
