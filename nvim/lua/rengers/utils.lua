@@ -71,8 +71,6 @@ function StartProfiling()
 end
 
 function OnNix()
-  --return os.execute("uname --operating-system") == "GNU/Linux" and 
-  return vim.fn.executable("nix") == 1
+    -- Checks for the existence of the /etc/NIXOS file, which is unique to NixOS
+    return os.execute("test -f /etc/NIXOS") == true
 end
-
-
