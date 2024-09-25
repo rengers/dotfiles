@@ -72,5 +72,6 @@ end
 
 function OnNix()
     -- Checks for the existence of the /etc/NIXOS file, which is unique to NixOS
-    return os.execute("test -f /etc/NIXOS") == true
+    local success = os.execute("test -f /etc/NIXOS")
+    return success and true or false
 end
