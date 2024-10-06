@@ -75,7 +75,7 @@ in
       path = "${config.xdg.dataHome}/zsh/history";
     };
     initExtra= ''
-      bindkey '^R' history-incremental-search-backward
+      #bindkey '^R' history-incremental-search-backward
       bindkey -e
       # Navigate words with ctrl+arrow keys
       bindkey '^[Oc' forward-word                                     #
@@ -93,6 +93,8 @@ in
     '';
       #bindkey '^I' history-incremental-search-forward
   };
+
+  programs.fzf.enable = true;
 
   programs.tmux = {
     enable = true;
@@ -152,7 +154,7 @@ in
           description = "SSH missing keys";
           when = "ssh-add -l | grep -q 'no identities'";
           command = "echo 🚫";
-          format = "[$symbol $output]($style)";
+          format = "[$symbol$output]($style)";
           shell = ["bash" "--noprofile" "--norc"];
           symbol = "🔑";
           style = "bold fg:red bg:surface0";
@@ -163,7 +165,7 @@ in
         description = "SSH key count";
         when = "ssh-add -l | grep -v -q 'no identities'";
         command = "ssh-add -l | grep -v 'no identities' | wc -l";
-        format = "[$symbol $output]($style)";
+        format = "[$symbol$output]($style)";
         shell = ["bash" "--noprofile" "--norc"];
         symbol = "🔑";
         style = "bold fg:green bg:surface0";
