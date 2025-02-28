@@ -91,3 +91,26 @@ vim.api.nvim_exec([[
 vim.api.nvim_exec([[
   autocmd! bufwritepost vimrc,*.vim source $MYVIMRC
 ]], false)
+
+
+-- Clipboard related
+vim.o.clipboard = "unnamedplus"
+
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg(""), "\n"),
+    vim.fn.getregtype(""),
+  }
+end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
