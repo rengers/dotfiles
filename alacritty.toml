@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-import = [
-  "~/.config/alacritty/catppuccin/catppuccin-macchiato.toml",
-  #"~/.config/alacritty/catppuccin/catppuccin-mocha.toml",
+general.import = [
+  #"~/.config/alacritty/catppuccin/catppuccin-macchiato.toml",
+  "~/.config/alacritty/catppuccin/catppuccin-mocha.toml",
   ]
 
 [cursor]

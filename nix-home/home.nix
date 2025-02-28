@@ -3,12 +3,15 @@
 let
     system = "x86_64-linux";
     unstable = import inputs.unstable {inherit system; };
+    isMacOS = builtins.currentSystem == "aarch64-darwin";
+    isLinux = builtins.currentSystem == "x86_64-linux";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "rengers";
-  home.homeDirectory = "/home/rengers";
+  home.homeDirectory = if isMacOS then "/Users/rengers" else "/home/rengers";
+  #home.homeDirectory = "/home/rengers";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -27,9 +30,9 @@ in
     # pkgs.hello
     #unstable.alacritty
     pkgs.alacritty
-    pkgs.alsa-utils
+    # pkgs.alsa-utils # This is linux specific
     pkgs.docker
-    pkgs.gdb
+    #pkgs.gdb -- doesn't seem to build for darwin
     pkgs.nmap
     pkgs.tmux
     pkgs.zsh
@@ -56,6 +59,7 @@ in
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      ls="ls --color=auto";
       ll = "ls -l";
       cp      = "cp -iv";
       nupdate = "cd /etc/nixos && sudo nix flake update && cd -";
@@ -69,11 +73,13 @@ in
       da = "direnv allow";
       awswho = "aws sts get-caller-identity";
     };
+
     history = {
       size = 10000;
       extended = true;
-      path = "${config.xdg.dataHome}/zsh/history";
+      path = "$HOME/.zsh_history";
     };
+
     initExtra= ''
       #bindkey '^R' history-incremental-search-backward
       bindkey -e
@@ -86,12 +92,31 @@ in
       bindkey '^[[Z' undo                                             # Shift+tab undo last action
       bindkey "\e[3~" delete-char                                     # bind delete to delete
 
+
+      # Add post hook to brew upgrade
+      function brew() {
+        case $1 in
+          upgrade)
+            shift
+            command brew upgrade "$@" && /Users/rengers/scripts/check_brew_updates.sh
+            ;;
+          *)
+            command brew "$@";;
+        esac
+      };
+
       # Load rust
       if [ -f $HOME/.cargo/env ]; then
         source $HOME/.cargo/env
       fi
+
+      eval "$(direnv hook zsh)"
     '';
       #bindkey '^I' history-incremental-search-forward
+
+      oh-my-zsh.enable = true;
+      oh-my-zsh.plugins = ["git" "sudo"];
+
   };
 
   programs.fzf.enable = true;
@@ -114,21 +139,23 @@ in
         lib = pkgs.lib;
         formatString = lib.concatStrings [
       "[](surface0)$os"
-      "$custom"
       #"[](bg:surface0)"
+      "$custom"
       "[](bg:peach fg:surface0)"
       "$directory[](fg:peach bg:green)"
       "$git_branch$git_status"
       "$git_metrics[](fg:green bg:teal)"
       "$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$ruby$rust$scala[](fg:teal bg:blue)"
-      "$docker_context$nix_shell$aws[](fg:blue bg:surface0) "
+      "$docker_context$nix_shell$aws"
+      #"[](fg:blue) "
+      "[](fg:blue) "
       #"$line_break"
       #"$character"
       ];
       in{
       format = "${formatString}";
 
-      right_format ="[](surface0)$character[](bg:surface0)$cmd_duration$time";
+      right_format ="[](surface0)$status$character[](bg:surface0)$cmd_duration$time";
       add_newline = false;
 
       username = {
@@ -147,6 +174,12 @@ in
           #"NixOS" = " ";
           #"NixOS" = "❄️";
         };
+      };
+
+      custom.brew_updates = {
+        command = "cat ~/.brew_updates_cache";
+        when = "test -f ~/.brew_updates_cache && ! grep -q '^$' ~/.brew_updates_cache";
+        style = "bg:surface0";
       };
 
       custom.ssh_no_keys = {
@@ -174,10 +207,14 @@ in
       directory = {
         style = "fg:mantle bg:peach";
         #format = "[ $path ]($style)";
-        format = "[  $path ]($style)[$read_only]($style)";
+        #closed_folder ="";
+        #open_folder = " ";
+        #format = "[  $path ]($style)[$read_only]($style)";
+        format = "[  $path ]($style)[$read_only]($style)";
         truncation_length = 3;
         truncation_symbol = ".../";
         substitutions = {
+          #"~" = " ~";
           "Documents" = "󰈙";
           "Downloads" = "";
           "Music" = "";
@@ -312,7 +349,7 @@ in
         disabled = false;
         time_format = "%T";  # Hour:Minute:Second Format
         style = "bg:surface0 fg:text";
-        format = "[  $time ]($style)";
+        format = "[ $time  ]($style)";
       };
 
       line_break = {
@@ -354,8 +391,16 @@ in
       character = {
         disabled = false;
         success_symbol = "[✔ ](bold fg:green bg:surface0)";
-        error_symbol = "[✔ ](bold fg:red bg:surface0)";
+        error_symbol = "[✘ ](bold fg:red bg:surface0)";
         format = "$symbol";
+      };
+
+      status = {
+        disabled = false;
+        #symbol = "✘";
+        #success_symbol = "✔";
+        style = "bg:surface0 fg:red";
+        format = "[$status ]($style)";
       };
     };
   };
@@ -397,14 +442,14 @@ in
   };
 
   home.sessionPath= [
-    "/usr/sbin:/usr/bin:/sbin:/bin"
+      "/usr/sbin:/usr/bin:/sbin:/bin"
       "/usr/local/sbin"
       "/usr/local/bin"
       "/opt/homebrew/sbin"
       "/opt/homebrew/bin"
       "$HOME/scripts"
       "$HOME/_scripts"
-      "$HOME/.rbenv/bin"
+      "$HOME/.rbenv/shims"
       "$HOME/bin"
       "$HOME/.pyenv"
       "$PYENV_ROOT/bin"
