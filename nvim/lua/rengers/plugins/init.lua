@@ -38,6 +38,12 @@ return{
   "rust-lang/rust.vim",
   "kblin/vim-fountain",
   "Shougo/ddx.vim",
+  {
+    'chomosuke/typst-preview.nvim',
+    lazy = false, -- or ft = 'typst'
+    version = '0.3.*',
+    build = function() require 'typst-preview'.update() end,
+  },
 
   "RRethy/vim-illuminate", -- Nice auto highlighting
 

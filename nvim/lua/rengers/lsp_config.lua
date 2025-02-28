@@ -207,6 +207,14 @@ lspconfig.bashls.setup({
 -- nix
 lspconfig.nil_ls.setup{
   on_attach = custom_attach,
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      nix = {
+        autoArchive = true,  -- Automatically fetch flake inputs
+      },
+    },
+  },
 }
 
 -- dockerfile
