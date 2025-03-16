@@ -78,7 +78,7 @@ in
     history = {
       size = 10000;
       extended = true;
-      path = "$HOME/.zsh_history";
+      path = if isMacOS then "$HOME/.zsh_history" else "${config.xdg.dataHome}/zsh/history";
     };
 
     initExtra= ''
@@ -122,6 +122,7 @@ in
 
   };
 
+  programs.direnv.enable = true;
   programs.fzf.enable = true;
 
   programs.tmux = {
