@@ -38,6 +38,7 @@ in
     pkgs.zsh
     pkgs.coreutils # Ensures basic utilities are available in your user environment
 
+    pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -111,6 +112,8 @@ in
       fi
 
       eval "$(direnv hook zsh)"
+      source ${pkgs.fzf}/share/fzf/completion.zsh
+      #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
     '';
       #bindkey '^I' history-incremental-search-forward
 
