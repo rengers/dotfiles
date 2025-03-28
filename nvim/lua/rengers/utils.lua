@@ -1,16 +1,16 @@
 function CopyAndExtend(original, new_values)
-    local result = {}
-    for k, v in pairs(original) do
-        result[k] = v
-    end
-    for k, v in pairs(new_values) do
-        result[k] = v
-    end
-    return result
+  local result = {}
+  for k, v in pairs(original) do
+    result[k] = v
+  end
+  for k, v in pairs(new_values) do
+    result[k] = v
+  end
+  return result
 end
 
 -- BufcloseCloseIt Command
-vim.cmd[[
+vim.cmd [[
   command! Bclose call v:lua.BufcloseCloseIt()
 ]]
 function BufcloseCloseIt()
@@ -31,6 +31,7 @@ function BufcloseCloseIt()
     vim.cmd("bdelete! " .. currentBufNum)
   end
 end
+
 _G.BufcloseCloseIt = BufcloseCloseIt
 
 
@@ -62,7 +63,6 @@ function ToggleList(bufname, pfx)
   end
 end
 
-
 -- StartProfiling Function
 function StartProfiling()
   vim.cmd("profile start profile.log")
@@ -71,7 +71,12 @@ function StartProfiling()
 end
 
 function OnNix()
-    -- Checks for the existence of the /etc/NIXOS file, which is unique to NixOS
-    local success = os.execute("test -f /etc/NIXOS")
-    return success and true or false
+  -- Checks for the existence of the /etc/NIXOS file, which is unique to NixOS
+  local file = io.open("/etc/NIXOS", "r")
+  if file then
+    file:close()
+    return true
+  else
+    return false
+  end
 end
