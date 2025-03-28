@@ -5,11 +5,11 @@ vim.o.swapfile = false
 -- Try to set the undo directory and enable undofile
 local undodir = vim.fn.expand("~/.vim/undodir")
 local ok, _ = pcall(function()
-  vim.o.undodir = undodir
-  vim.o.undofile = true
+	vim.o.undodir = undodir
+	vim.o.undofile = true
 end)
 if not ok then
-  vim.api.nvim_err_writeln("Failed to set undodir. Please ensure the directory exists: " .. undodir)
+	vim.api.nvim_err_writeln("Failed to set undodir. Please ensure the directory exists: " .. undodir)
 end
 
 -- Change buffer - without saving
@@ -67,8 +67,8 @@ vim.opt.autoindent = true -- Auto indent
 vim.opt.smartindent = true -- Smart indent
 vim.opt.wrap = true -- Wrap lines
 
-if not vim.fn.has('nvim') then
-  vim.opt.encoding = "utf8"
+if not vim.fn.has("nvim") then
+	vim.opt.encoding = "utf8"
 end
 
 -- Set language
@@ -80,37 +80,62 @@ vim.opt.fileformats = "unix,dos,mac" -- Default file types
 vim.opt.spellfile = "~/.vim/spell/en.utf-8.add"
 
 -- Return cursor to last edit position in the buffer
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   augroup RestoreCursor
     autocmd!
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
   augroup END
-]], false)
+]],
+	false
+)
 
 -- When vimrc is edited, reload it
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
   autocmd! bufwritepost vimrc,*.vim source $MYVIMRC
-]], false)
-
+]],
+	false
+)
 
 -- Clipboard related
-vim.o.clipboard = "unnamedplus"
+--[[
+📌 Neovim Clipboard & OSC-52 Summary
 
-local function paste()
-  return {
-    vim.fn.split(vim.fn.getreg(""), "\n"),
-    vim.fn.getregtype(""),
-  }
+| Method                      | Works Locally?  | Works Over SSH?     | Notes                                        |
+|-----------------------------|-----------------|---------------------|----------------------------------------------|
+| Default (`yy`, `p`)         | ✅ Internal buf | ✅ Internal buf     | No system clipboard access                   |
+| `"*y`, `"*p`                | ✅ (Linux only) | 🚫                  | Uses PRIMARY selection (middle mouse paste)  |
+| `"+y`, `"+p`                | ✅ (All OS)     | 🚫 (without OSC-52) | Uses SYSTEM clipboard (Ctrl/Cmd + C & V)     |
+| `set clipboard=unnamedplus` | ✅ (macOS/Win)  | 🚫 (without OSC-52) | Makes `yy`, `p` use system clipboard         |
+| **OSC-52**                  | 🚫              | ✅                  | Copies from SSH Neovim to local clipboard    |
+
+📌 Recommended Setup:
+
+🔹 For **local use (Mac/Linux/Windows)**:
+  set clipboard=""
+
+🔹 For **remote SSH use**, enable **OSC-52**:
+  if vim.env.SSH_TTY then
+    require("osc52").setup({ silent = true })
+    vim.keymap.set("n", "<leader>y", require("osc52").copy_operator, { expr = true })
+    vim.keymap.set("v", "<leader>y", require("osc52").copy_visual)
+  end
+
+🚀 Now, yy stays in Neovim, "+y yanks to system clipboard, and SSH yanks work!
+--]]
+
+-- Ensure we do NOT use unnamedplus so `yy` stays in Neovim
+vim.opt.clipboard = ""
+
+-- Keybinds for explicit system clipboard usage
+vim.keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to system clipboard" })
+vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<leader>Y", '"+Y', { noremap = true, silent = true, desc = "Yank line to system clipboard" })
+
+-- Enable OSC-52 only when in SSH (remote Neovim)
+if vim.env.SSH_TTY then
+	require("osc52").setup({ silent = true })
+	vim.keymap.set("n", "<leader>y", require("osc52").copy_operator, { expr = true })
+	vim.keymap.set("v", "<leader>y", require("osc52").copy_visual)
 end
-
-vim.g.clipboard = {
-  name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
-  paste = {
-    ["+"] = paste,
-    ["*"] = paste,
-  },
-}
