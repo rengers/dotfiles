@@ -111,6 +111,18 @@ in
         source $HOME/.cargo/env
       fi
 
+      # Setup ruby and python for mac
+      if [[ "$(uname)" == "Darwin" ]]; then
+        eval "$(rbenv init -)"
+        eval "$(pyenv init --path)"
+        eval "$(pyenv init -)"
+        if command -v pyenv-virtualenv-init > /dev/null; then
+          eval "$(pyenv virtualenv-init -)"
+        fi
+      fi
+
+
+
       eval "$(direnv hook zsh)"
       source ${pkgs.fzf}/share/fzf/completion.zsh
       #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
@@ -443,23 +455,23 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+
+    # Ensure PYENV is only set on macOS
+    PYENV_ROOT = if isMacOS then "$HOME/.pyenv" else null;
   };
 
   home.sessionPath= [
-      "/usr/sbin:/usr/bin:/sbin:/bin"
-      "/usr/local/sbin"
-      "/usr/local/bin"
+      "$HOME/bin"
       "/opt/homebrew/sbin"
       "/opt/homebrew/bin"
+      "/usr/local/sbin"
+      "/usr/sbin:/usr/bin:/sbin:/bin"
+      "/usr/local/bin"
       "$HOME/scripts"
       "$HOME/_scripts"
-      "$HOME/.rbenv/shims"
-      "$HOME/bin"
-      "$HOME/.pyenv"
-      "$PYENV_ROOT/bin"
       "/Library/Frameworks/GStreamer.framework/Versions/Current/bin"
       "$HOME/.toolbox/bin"
-  ];
+  ] ++ (if isMacOS then [ "$PYENV_ROOT/bin" ] else []);
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
