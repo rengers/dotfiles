@@ -457,8 +457,7 @@ in
     EDITOR = "nvim";
 
     # Ensure PYENV is only set on macOS
-    PYENV_ROOT = if isMacOS then "$HOME/.pyenv" else null;
-  };
+  } // (if isMacOS then { PYENV_ROOT = "$HOME/.pyenv"; } else { });
 
   home.sessionPath= [
       "$HOME/bin"
