@@ -81,7 +81,7 @@ in
       path = if isMacOS then "$HOME/.zsh_history" else "${config.xdg.dataHome}/zsh/history";
     };
 
-    initExtra= ''
+    initContent= ''
       #bindkey '^R' history-incremental-search-backward
       bindkey -e
       # Navigate words with ctrl+arrow keys
