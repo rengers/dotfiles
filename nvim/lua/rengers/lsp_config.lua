@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 
 local lsp_filetypes = {
@@ -117,7 +116,7 @@ end
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- python
-lspconfig.pyright.setup({
+vim.lsp.config("pyright", {
 	on_attach = function(client, bufnr)
 		custom_attach(client, bufnr)
 		-- 'Organize imports' keymap for pyright only
@@ -141,7 +140,7 @@ lspconfig.pyright.setup({
 })
 
 -- typescript
-lspconfig.ts_ls.setup({
+vim.lsp.config("ts_ls", {
 	on_attach = function(client, bufnr)
 		local ts_utils = require("nvim-lsp-ts-utils")
 		ts_utils.setup({
@@ -176,17 +175,17 @@ lspconfig.ts_ls.setup({
 })
 
 -- yaml
-lspconfig.yamlls.setup({
+vim.lsp.config("yamlls", {
 	on_attach = custom_attach,
 })
 
 -- bash
-lspconfig.bashls.setup({
+vim.lsp.config("bashls", {
 	on_attach = custom_attach,
 })
 
 -- nix
-lspconfig.nil_ls.setup({
+vim.lsp.config("nil_l", {
 	on_attach = custom_attach,
 	capabilities = capabilities,
 	settings = {
@@ -199,30 +198,30 @@ lspconfig.nil_ls.setup({
 })
 
 -- dockerfile
-lspconfig.dockerls.setup({})
+vim.lsp.config("dockerls", {})
 
 -- docker-compose
-lspconfig.docker_compose_language_service.setup({})
+vim.lsp.config("docker_compose", {})
 
 -- ruby
-lspconfig.solargraph.setup({})
+vim.lsp.config("solargraph", {})
 
 -- toml
-lspconfig.taplo.setup({})
+vim.lsp.config("taplo", {})
 
 -- latex
-lspconfig.texlab.setup({
+vim.lsp.config("texlab", {
 	on_attach = custom_attach,
 })
 
 -- c clangd
-lspconfig.clangd.setup({
+vim.lsp.config("clangd", {
 	on_attach = custom_attach,
 	arguments = { "-Wall" },
 })
 
 -- lua
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
 	on_attach = custom_attach,
 	settings = {
 		Lua = {
@@ -259,7 +258,7 @@ lspconfig.lua_ls.setup({
 --})
 
 -- Go
-lspconfig.gopls.setup({
+vim.lsp.config("gopls", {
 	on_attach = custom_attach,
 	capabilities = capabilities,
 	cmd = { "gopls", "serve" },
@@ -336,10 +335,12 @@ local rust_opts = {
 		},
 	},
 }
-require("rust-tools").setup(rust_opts)
+vim.lsp.config("rust-tools", {
+	rust_opts,
+})
 
 -- kotlin
-lspconfig.kotlin_language_server.setup({})
+vim.lsp.config("kotlin_language_server", {})
 
 return {
 	lsp_filetypes = lsp_filetypes,
