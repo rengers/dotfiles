@@ -1,8 +1,7 @@
 {
-  description = "Nixos config flake";
+  description = "NixOS + Home Manager flake";
 
   inputs = {
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -12,20 +11,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, unstable, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      macSystem = "aarch64-darwin";
+      nixosSystem = "x86_64-linux";
+
+      pkgsMac = import nixpkgs { system = macSystem; };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "${system}";
-        specialArgs = {inherit inputs system;};
+      # Home Manager config for your Mac
+      homeConfigurations."rengers" = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsMac;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./home.nix ];
+      };
 
+      # NixOS config (kept as-is)
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = nixosSystem;
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          inputs.home-manager.nixosModules.default
-      ];
+          home-manager.nixosModules.default
+        ];
+      };
     };
-  };
 }
+

@@ -1,11 +1,20 @@
 { config, inputs, pkgs, ... }:
 
+#let
+#    system = "x86_64-linux";
+#    unstable = import inputs.unstable {inherit system; };
+#    isMacOS = builtins.currentSystem == "aarch64-darwin";
+#    isLinux = builtins.currentSystem == "x86_64-linux";
+#in
+
 let
-    system = "x86_64-linux";
-    unstable = import inputs.unstable {inherit system; };
-    isMacOS = builtins.currentSystem == "aarch64-darwin";
-    isLinux = builtins.currentSystem == "x86_64-linux";
+  system = pkgs.system;
+  unstable = import inputs.unstable { inherit system; };
+
+  isMacOS = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.isLinux;
 in
+
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -31,12 +40,25 @@ in
     #unstable.alacritty
     pkgs.alacritty
     # pkgs.alsa-utils # This is linux specific
-    pkgs.docker
+    # pkgs.docker
     #pkgs.gdb -- doesn't seem to build for darwin
     pkgs.nmap
     pkgs.tmux
     pkgs.zsh
     pkgs.coreutils # Ensures basic utilities are available in your user environment
+
+    #(pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; })
+    pkgs.fontconfig  # gives you fc-list
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.hack
+
+
+    # Tools
+    pkgs.nodejs
+    pkgs.python3
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.ruby
 
     pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -52,6 +74,14 @@ in
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  home.file."Library/Fonts/Nix Nerd Fonts/FiraCode".source = "${pkgs.nerd-fonts.fira-code}/share/fonts";
+  home.file."Library/Fonts/Nix Nerd Fonts/FiraCode".recursive = true;
+
+  home.file."Library/Fonts/Nix Nerd Fonts/Hack".source = "${pkgs.nerd-fonts.hack}/share/fonts";
+  home.file."Library/Fonts/Nix Nerd Fonts/Hack".recursive = true;
+
+
 
   programs.zsh = {
     enable = true;
@@ -81,7 +111,7 @@ in
       path = if isMacOS then "$HOME/.zsh_history" else "${config.xdg.dataHome}/zsh/history";
     };
 
-    initContent= ''
+    initExtra= ''
       #bindkey '^R' history-incremental-search-backward
       bindkey -e
       # Navigate words with ctrl+arrow keys
@@ -123,16 +153,34 @@ in
 
 
 
+      export LANG=en_US.UTF-8
+      export LC_ALL=en_US.UTF-8
+
       eval "$(direnv hook zsh)"
       source ${pkgs.fzf}/share/fzf/completion.zsh
       #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
     '';
       #bindkey '^I' history-incremental-search-forward
 
-      oh-my-zsh.enable = true;
-      oh-my-zsh.plugins = ["git" "sudo"];
+      #oh-my-zsh.enable = true;
+      #oh-my-zsh.plugins = ["git" "sudo"];
 
   };
+  programs.zsh.oh-my-zsh = {
+    enable = true;
+    plugins = [ "git" "sudo" ];
+  };
+
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    viAlias = true;
+  };
+
+  #xdg.configFile."nvim".source = /Users/rengers/dotfiles/nvim;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
+
+
 
   programs.direnv.enable = true;
   programs.fzf.enable = true;
