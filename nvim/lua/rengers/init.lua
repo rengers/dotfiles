@@ -17,7 +17,9 @@ require("rengers.utils") -- Some util functions
 require("rengers.mappings")
 
 vim.opt.termguicolors = true -- Must be enabled before colorizer plugin is loaded
-require('lazy').setup("rengers.plugins") -- plugins
+require('lazy').setup("rengers.plugins", {
+  lockfile = vim.fn.stdpath("state") .. "/lazy/lazy-lock.json",
+}) -- plugins
 
 require("rengers.looks") -- Look and feel
 require("rengers.behaviors")

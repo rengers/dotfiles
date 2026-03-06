@@ -6,7 +6,6 @@ return {
     "windwp/nvim-ts-autotag", -- auto rename html tags etc
     "JoosepAlviste/nvim-ts-context-commentstring", -- understand embedded comments
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "nvim-treesitter/playground", -- not a dependency but useful for inspecting the AST
   },
 
   build = function()
