@@ -93,6 +93,11 @@ local custom_attach = function(client, bufnr)
 	--vim.keymap.set("n", "H", vim.lsp.buf.code_action, keymap_opts) -- code actions (handled by telescope-ui-select)
 	vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, keymap_opts) -- manual formatting, because sometimes they just decide to stop working
 
+	-- native inlay hints (Neovim 0.11+)
+	if client.supports_method("textDocument/inlayHint") then
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+	end
+
 	-- use omnifunc
 	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 	vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr"
@@ -141,37 +146,7 @@ vim.lsp.config("pyright", {
 
 -- typescript
 vim.lsp.config("ts_ls", {
-	on_attach = function(client, bufnr)
-		local ts_utils = require("nvim-lsp-ts-utils")
-		ts_utils.setup({
-			update_imports_on_move = false,
-			enable_import_on_completion = true,
-			auto_inlay_hints = false, -- doesn't _quite_ work
-			inlay_hints_highlight = "Comment",
-			inlay_hints_format = {
-				Type = {
-					highlight = "Comment",
-					text = function(text)
-						return "->" .. text
-					end,
-				},
-				Parameter = {
-					highlight = "Comment",
-				},
-				Enum = {
-					highlight = "Comment",
-				},
-			},
-		})
-
-		ts_utils.setup_client(client)
-
-		-- TS specific mappings
-		vim.keymap.set("n", "<Leader>ii", "<cmd>TSLspOrganize<CR>", { buffer = bufnr, silent = true, noremap = true }) -- organize imports
-		vim.keymap.set("n", "<Leader>R", "<cmd>TSLspRenameFile<CR>", { buffer = bufnr, silent = true, noremap = true }) -- rename file AND update references to it
-
-		custom_attach(client, bufnr)
-	end,
+	on_attach = custom_attach,
 })
 
 -- yaml
@@ -289,55 +264,7 @@ vim.lsp.config("gopls", {
 	},
 })
 
--- rust
-local rust_opts = {
-	tools = {
-		runnables = {
-			use_telescope = true,
-		},
-		inlay_hints = {
-			auto = true,
-			show_parameter_hints = false,
-			parameter_hints_prefix = "=>",
-			other_hints_prefix = "",
-		},
-	},
-	server = {
-		on_attach = custom_attach,
-		capabilities = capabilities,
-		settings = {
-			["rust-analyzer"] = {
-				checkOnSave = {
-					-- default: `cargo check`
-					command = "clippy",
-				},
-				assist = {
-					importEnforceGranularity = true,
-					importPrefix = "crate",
-				},
-				cargo = {
-					allFeatures = true,
-				},
-				inlayHints = {
-					lifetimeElisionHints = {
-						enable = true,
-						useParameterNames = true,
-					},
-				},
-				workspace = {
-					symbol = {
-						search = {
-							kind = "all_symbols",
-						},
-					},
-				},
-			},
-		},
-	},
-}
-vim.lsp.config("rust-tools", {
-	rust_opts,
-})
+-- rust is handled by rustaceanvim (auto-configures rust-analyzer)
 
 -- kotlin
 vim.lsp.config("kotlin_language_server", {})

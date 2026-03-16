@@ -11,6 +11,4 @@ vim.opt.termguicolors = true
 
 vim.g.clang_library_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 
--- Yankring:
-vim.g.yankring_history_dir = "$HOME.'/.vim/"
 

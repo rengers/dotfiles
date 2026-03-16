@@ -61,6 +61,7 @@ in
     pkgs.ruby
     pkgs.tree-sitter
     pkgs.gcc
+    pkgs.claude-code
 
     pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying

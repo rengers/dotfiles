@@ -21,6 +21,6 @@ return
 
     require('lualine').setup(lualine_config)
   end,
-  dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+  dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin" },
 }
 

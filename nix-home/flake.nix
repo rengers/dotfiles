@@ -16,7 +16,12 @@
       macSystem = "aarch64-darwin";
       nixosSystem = "x86_64-linux";
 
-      pkgsMac = import nixpkgs { system = macSystem; };
+      pkgsMac = import nixpkgs {
+        system = macSystem;
+        config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+          "claude-code"
+        ];
+      };
     in
     {
       # Home Manager config for your Mac

@@ -26,8 +26,4 @@ vim.api.nvim_create_autocmd("FileType", {
   group = git_commit_group
 })
 
-if vim.loop.os_uname().sysname == "darwin" then
-  --let g:python3_host_prog = "/Users/rengers/.pyenv/shims/python3"
-  vim.g.python3_host_prog = '/Users/rengers/.pyenv/shims/python3'
-  vim.g.ruby_host_prog = "$HOME/.rbenv/shims/neovim-ruby-host"
-end
+-- python3/ruby host providers resolve via PATH (managed by Nix + direnv)
