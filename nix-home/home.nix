@@ -59,6 +59,8 @@ in
     pkgs.rustc
     pkgs.cargo
     pkgs.ruby
+    pkgs.tree-sitter
+    pkgs.gcc
 
     pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -141,15 +143,8 @@ in
         source $HOME/.cargo/env
       fi
 
-      # Setup ruby and python for mac
-      if [[ "$(uname)" == "Darwin" ]]; then
-        eval "$(rbenv init -)"
-        eval "$(pyenv init --path)"
-        eval "$(pyenv init -)"
-        if command -v pyenv-virtualenv-init > /dev/null; then
-          eval "$(pyenv virtualenv-init -)"
-        fi
-      fi
+      # Ruby and Python versions are managed per-project via Nix dev shells + direnv.
+      # Add a flake.nix + .envrc to each project. See: https://nixos.wiki/wiki/Flakes
 
 
 
@@ -503,9 +498,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
-
-    # Ensure PYENV is only set on macOS
-  } // (if isMacOS then { PYENV_ROOT = "$HOME/.pyenv"; } else { });
+  };
 
   home.sessionPath= [
       "$HOME/bin"
@@ -518,7 +511,7 @@ in
       "$HOME/_scripts"
       "/Library/Frameworks/GStreamer.framework/Versions/Current/bin"
       "$HOME/.toolbox/bin"
-  ] ++ (if isMacOS then [ "$PYENV_ROOT/bin" ] else []);
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -1,115 +1,78 @@
 return {
 
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
 
   dependencies = {
-    "windwp/nvim-ts-autotag", -- auto rename html tags etc
-    "JoosepAlviste/nvim-ts-context-commentstring", -- understand embedded comments
+    "windwp/nvim-ts-autotag",
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
 
-  build = function()
-    require('nvim-treesitter.install').update({ with_sync = true })
-  end,
-
   config = function()
-    vim.opt.foldmethod = "expr" -- use function to determine folds,
-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- use treesitter for folding
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-    require("nvim-treesitter.configs").setup({
-      -- either "all" or a list of languages
-      ensure_installed = {
-        "bash",
-        "c",
-        "comment",
-        "cpp",
-        "css",
-        "diff",
-        "gitcommit",
-        "go",
-        "html",
-        "javascript",
-        "jsdoc",
-        "lua",
-        "perl",
-        "python",
-        "regex",
-        "ruby",
-        "rust",
-        "sql",
-        "tsx",
-        "typescript",
-        "yaml",
-      },
-      sync_install = false,
-      modules = {},
-      ignore_install = {},
-      auto_install = true,
-      additional_vim_regex_highlighting = false,
+    local parsers = {
+      "bash", "c", "comment", "cpp", "css", "diff", "gitcommit",
+      "go", "html", "javascript", "jsdoc", "lua", "perl", "python",
+      "regex", "ruby", "rust", "sql", "tsx", "typescript", "yaml",
+    }
 
-      highlight = {
-        -- false will disable the whole extension
+    require("nvim-treesitter").install(parsers)
+
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(args)
+        if pcall(vim.treesitter.start, args.buf) then return end
+      end,
+    })
+
+    require("nvim-treesitter-textobjects").setup({
+      select = {
         enable = true,
-      },
-      indent = {
-        enable = false, -- buggy :/
-      },
-      -- custom text objects
-      textobjects = {
-        -- change/delete/select in function or class
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-          },
-        },
-        -- easily move to next function/class
-        move = {
-          enable = true,
-          set_jumps = true, -- track in jumplist (<C-o>, <C-i>)
-          goto_next_start = {
-            ["]]"] = "@function.outer",
-            ["))"] = "@class.outer",
-          },
-          goto_next_end = {
-            ["[]"] = "@function.outer",
-            ["()"] = "@class.outer",
-          },
-          goto_previous_start = {
-            ["[["] = "@function.outer",
-            ["(("] = "@class.outer",
-          },
-          goto_previous_end = {
-            ["]["] = "@function.outer",
-            [")("] = "@class.outer",
-          },
-        },
-        -- peek definitions from LSP
-        lsp_interop = {
-          enable = true,
-          border = "single",
-          peek_definition_code = {
-            ["<Leader>pf"] = "@function.outer",
-            ["<Leader>pc"] = "@class.outer",
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<Leader>l"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<Leader>h"] = "@parameter.outer",
-          },
+        lookahead = true,
+        keymaps = {
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
         },
       },
-      autotag = {
+      move = {
         enable = true,
-        filetypes = { "html", "vue" },
+        set_jumps = true,
+        goto_next_start = {
+          ["]]"] = "@function.outer",
+          ["))"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["[]"] = "@function.outer",
+          ["()"] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[["] = "@function.outer",
+          ["(("] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["]["] = "@function.outer",
+          [")("] = "@class.outer",
+        },
+      },
+      lsp_interop = {
+        enable = true,
+        border = "single",
+        peek_definition_code = {
+          ["<Leader>pf"] = "@function.outer",
+          ["<Leader>pc"] = "@class.outer",
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ["<Leader>l"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["<Leader>h"] = "@parameter.outer",
+        },
       },
     })
   end,

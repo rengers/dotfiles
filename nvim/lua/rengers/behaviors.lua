@@ -2,15 +2,11 @@ vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
 
--- Try to set the undo directory and enable undofile
-local undodir = vim.fn.expand("~/.vim/undodir")
-local ok, _ = pcall(function()
-	vim.o.undodir = undodir
-	vim.o.undofile = true
-end)
-if not ok then
-	vim.api.nvim_err_writeln("Failed to set undodir. Please ensure the directory exists: " .. undodir)
-end
+-- Persistent undo using Neovim's standard data directory
+local undodir = vim.fn.stdpath("data") .. "/undodir"
+vim.fn.mkdir(undodir, "p")
+vim.o.undodir = undodir
+vim.o.undofile = true
 
 -- Change buffer - without saving
 vim.opt.hidden = true
@@ -77,7 +73,7 @@ vim.cmd([[try | lang en_US | catch | endtry]])
 vim.opt.fileformats = "unix,dos,mac" -- Default file types
 
 -- Spell file
-vim.opt.spellfile = "~/.vim/spell/en.utf-8.add"
+vim.opt.spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add"
 
 -- Return cursor to last edit position in the buffer
 vim.api.nvim_exec(
