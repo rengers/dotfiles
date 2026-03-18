@@ -1,17 +1,20 @@
 return {
-    "smoka7/multicursors.nvim",
-    event = "VeryLazy",
-    dependencies = {
-        'nvimtools/hydra.nvim',
-    },
-    opts = {},
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
-    keys = {
-            {
-                mode = { 'v', 'n' },
-                '<Leader>m',
-                '<cmd>MCstart<cr>',
-                desc = 'Create a selection for selected text or word under the cursor',
-            },
-        },
+	"jake-stewart/multicursor.nvim",
+	config = function()
+		local mc = require("multicursor-nvim")
+		mc.setup()
+
+		local set = vim.keymap.set
+
+		set({ "n", "v" }, "<leader>m", mc.matchAddCursor, { desc = "Add cursor on next match" })
+		set({ "n", "v" }, "<leader>M", mc.matchSkipCursor, { desc = "Skip match, move to next" })
+		set("n", "<Esc>", function()
+			if not mc.cursorsEnabled() then
+				mc.enableCursors()
+			elseif mc.hasCursors() then
+				mc.clearCursors()
+			end
+		end)
+		set("n", "<leader>ma", mc.alignCursors, { desc = "Align cursors" })
+	end,
 }

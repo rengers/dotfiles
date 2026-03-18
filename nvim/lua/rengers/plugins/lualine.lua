@@ -10,7 +10,7 @@ return
       options = {
         component_separators = { left = '', right = ''}, -- Adjust these as needed
         section_separators = { left = '', right = ''}, -- Rounded edges
-        theme = "catppuccin"
+        theme = "auto"
       },
       sections = { }
     }

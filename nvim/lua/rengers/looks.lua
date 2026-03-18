@@ -1,5 +1,3 @@
-vim.cmd [[colorscheme catppuccin]]
-
 vim.wo.number = true
 vim.opt.laststatus=2 --always display status line
 vim.wo.cursorline = true
