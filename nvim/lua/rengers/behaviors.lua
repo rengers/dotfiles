@@ -129,9 +129,17 @@ vim.keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = 
 vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>Y", '"+Y', { noremap = true, silent = true, desc = "Yank line to system clipboard" })
 
--- Enable OSC-52 only when in SSH (remote Neovim)
+-- Enable built-in OSC-52 clipboard only when in SSH (remote Neovim)
 if vim.env.SSH_TTY then
-	require("osc52").setup({ silent = true })
-	vim.keymap.set("n", "<leader>y", require("osc52").copy_operator, { expr = true })
-	vim.keymap.set("v", "<leader>y", require("osc52").copy_visual)
+	vim.g.clipboard = {
+		name = "OSC 52",
+		copy = {
+			["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+			["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		},
+		paste = {
+			["+"] = function() return vim.fn.getreg("0") end,
+			["*"] = function() return vim.fn.getreg("0") end,
+		},
+	}
 end
