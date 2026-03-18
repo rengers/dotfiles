@@ -62,6 +62,9 @@ in
     pkgs.tree-sitter
     pkgs.gcc
     pkgs.claude-code
+    pkgs.pyenv
+    pkgs.rbenv
+    pkgs.ripgrep
 
     pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -144,13 +147,17 @@ in
         source $HOME/.cargo/env
       fi
 
-      # Ruby and Python versions are managed per-project via Nix dev shells + direnv.
-      # Add a flake.nix + .envrc to each project. See: https://nixos.wiki/wiki/Flakes
-
-
-
       export LANG=en_US.UTF-8
       export LC_ALL=en_US.UTF-8
+
+      # pyenv — must come after PATH is set, before direnv hook
+      export PYENV_ROOT="$HOME/.pyenv"
+      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)" 2>/dev/null
+
+      # rbenv
+      eval "$(rbenv init - zsh)"
 
       eval "$(direnv hook zsh)"
       source ${pkgs.fzf}/share/fzf/completion.zsh
@@ -499,6 +506,7 @@ in
   #
   home.sessionVariables = {
     EDITOR = "nvim";
+    PYENV_ROOT = "$HOME/.pyenv";
   };
 
   home.sessionPath= [
