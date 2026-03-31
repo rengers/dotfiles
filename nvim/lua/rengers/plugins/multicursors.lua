@@ -1,5 +1,10 @@
 return {
 	"jake-stewart/multicursor.nvim",
+	keys = {
+		{ "<leader>m", mode = { "n", "v" }, desc = "Add cursor on next match" },
+		{ "<leader>M", mode = { "n", "v" }, desc = "Skip match, move to next" },
+		{ "<leader>ma", desc = "Align cursors" },
+	},
 	config = function()
 		local mc = require("multicursor-nvim")
 		mc.setup()

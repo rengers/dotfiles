@@ -118,7 +118,13 @@ local custom_attach = function(client, bufnr)
 	--})
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local _capabilities
+local function get_capabilities()
+	if not _capabilities then
+		_capabilities = require("cmp_nvim_lsp").default_capabilities()
+	end
+	return _capabilities
+end
 
 -- python
 vim.lsp.config("pyright", {
@@ -162,7 +168,7 @@ vim.lsp.config("bashls", {
 -- nix
 vim.lsp.config("nil_l", {
 	on_attach = custom_attach,
-	capabilities = capabilities,
+	capabilities = get_capabilities(),
 	settings = {
 		["nil"] = {
 			nix = {
@@ -235,7 +241,7 @@ vim.lsp.config("lua_ls", {
 -- Go
 vim.lsp.config("gopls", {
 	on_attach = custom_attach,
-	capabilities = capabilities,
+	capabilities = get_capabilities(),
 	cmd = { "gopls", "serve" },
 	filetypes = { "go", "gomod", "gowork", "gotmpl" },
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),

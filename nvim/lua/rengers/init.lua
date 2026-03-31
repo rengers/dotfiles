@@ -16,6 +16,10 @@ vim.api.nvim_command('filetype plugin indent on')
 require("rengers.utils") -- Some util functions
 require("rengers.mappings")
 
+-- Disable netrw before plugins load
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.termguicolors = true -- Must be enabled before colorizer plugin is loaded
 require('lazy').setup("rengers.plugins", {
   lockfile = vim.fn.stdpath("state") .. "/lazy/lazy-lock.json",

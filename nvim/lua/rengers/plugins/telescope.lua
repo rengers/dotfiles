@@ -6,6 +6,18 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
 
+  cmd = "Telescope",
+  keys = {
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+    { "<leader>gg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+    { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+    { "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps" },
+    { "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Todo comments" },
+    { "<leader>e", "<cmd>Telescope find_files search_dirs=~/dotfiles<cr>", desc = "Dotfiles" },
+    { "<leader>wg", function() vim.cmd('Telescope live_grep default_text=' .. vim.fn.expand('<cword>')) end, desc = "Grep word under cursor" },
+  },
+
   config = function()
     local telescope = require("telescope")
 
@@ -24,21 +36,5 @@ return {
     telescope.load_extension("yank_history")
     telescope.load_extension("notify")
     telescope.load_extension("todo-comments")
-
-    local keymap_opts = { buffer = false, silent = true, noremap = true }
-    vim.keymap.set("n", "<leader>ff", ":Telescope find_files<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>gg", ":Telescope live_grep<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>fb", ":Telescope buffers<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>fk", ":Telescope keymaps<cr>", keymap_opts)
-    vim.keymap.set("n", "<leader>ft", ":TodoTelescope<cr>", keymap_opts)
-
-    vim.keymap.set("n", "<leader>e", ":Telescope find_files search_dirs=~/dotfiles<cr>", keymap_opts)
-
-    local function telescope_grep()
-      vim.cmd('Telescope live_grep default_text=' .. vim.fn.expand('<cword>'))
-    end
-    vim.keymap.set("n", "<leader>wg", telescope_grep, keymap_opts)
-
   end,
 }

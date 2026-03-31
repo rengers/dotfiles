@@ -1,6 +1,7 @@
 return
 {
   "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
   config = function()
     package.loaded['lualine'] = nil
     -- Detect the OS

@@ -1,6 +1,7 @@
 return {
 	"williamboman/mason.nvim",
 	enabled = not OnNix(),
+	event = "VeryLazy",
 	opts = {
 		ensure_installed = {
 			"clangd",

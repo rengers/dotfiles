@@ -1,15 +1,14 @@
 return {
   "gbprod/yanky.nvim",
+  keys = {
+    { "p", "<Plug>(YankyPutAfter)", mode = {"n", "x"} },
+    { "P", "<Plug>(YankyPutBefore)", mode = {"n", "x"} },
+    { "gp", "<Plug>(YankyGPutAfter)", mode = {"n", "x"} },
+    { "gP", "<Plug>(YankyGPutBefore)", mode = {"n", "x"} },
+    { "<c-n>", "<Plug>(YankyCycleForward)" },
+    { "<c-p>", "<Plug>(YankyCycleBackward)" },
+  },
   config = function()
-
-    --mappings
-    vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-    vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-    vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
-    vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
-    vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
-    vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
-
     require("yanky").setup({
       ring = {
         history_length = 100,
@@ -19,11 +18,11 @@ return {
       },
       picker = {
         select = {
-          action = nil, -- nil to use default put action
+          action = nil,
         },
         telescope = {
-          use_default_mappings = true, -- if default mappings should be used
-          mappings = nil, -- nil to use default mappings or no mappings (see `use_default_mappings`)
+          use_default_mappings = true,
+          mappings = nil,
         },
       },
       system_clipboard = {

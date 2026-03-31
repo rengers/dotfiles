@@ -5,9 +5,7 @@ return {
 	-- Snippet engine
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"nvim-cmp",
-		},
+		lazy = true,
 		config = function()
 			require("rengers.plugin-conf.snippets")
 		end,
@@ -15,12 +13,14 @@ return {
 
 	{
 		"hrsh7th/cmp-nvim-lsp",
+		lazy = true,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 	},
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("rengers.lsp_config")
 		end,
@@ -30,25 +30,26 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",
-		lazy = false,
+		ft = "rust",
 	},
-	"rust-lang/rust.vim",
+	{ "rust-lang/rust.vim", ft = "rust" },
 	"kblin/vim-fountain",
 	"Shougo/ddx.vim",
 	{
 		"chomosuke/typst-preview.nvim",
-		lazy = false,
+		ft = "typst",
 		version = "0.3.*",
 		build = function()
 			require("typst-preview").update()
 		end,
 	},
 
-	"RRethy/vim-illuminate",
+	{ "RRethy/vim-illuminate", event = "BufReadPost" },
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
+		event = "BufReadPost",
 		config = function()
 			require("ibl").setup()
 		end,
@@ -61,7 +62,7 @@ return {
 	},
 
 	-- Look and theme
-	"rcarriga/nvim-notify",
+	{ "rcarriga/nvim-notify", event = "VeryLazy" },
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -74,6 +75,7 @@ return {
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
+		event = "BufReadPost",
 		config = function()
 			require("colorizer").setup()
 		end,
@@ -103,6 +105,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
+		event = "BufReadPost",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
