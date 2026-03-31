@@ -62,6 +62,8 @@ in
     pkgs.tree-sitter
     pkgs.gcc
     pkgs.claude-code
+    pkgs.pandoc
+    pkgs.rubyPackages.pry
     pkgs.pyenv
     pkgs.rbenv
     pkgs.ripgrep
@@ -510,6 +512,7 @@ in
   };
 
   home.sessionPath= [
+      "$HOME/.local/bin"
       "$HOME/bin"
       "/opt/homebrew/sbin"
       "/opt/homebrew/bin"
