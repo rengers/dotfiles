@@ -10,6 +10,7 @@
 let
   system = pkgs.system;
   unstable = import inputs.unstable { inherit system; };
+  lib = pkgs.lib;
 
   isMacOS = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
@@ -67,6 +68,7 @@ in
     pkgs.pyenv
     pkgs.rbenv
     pkgs.ripgrep
+    pkgs.tree
 
     pkgs.ffmpeg
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -119,52 +121,73 @@ in
       path = if isMacOS then "$HOME/.zsh_history" else "${config.xdg.dataHome}/zsh/history";
     };
 
-    initContent= ''
-      #bindkey '^R' history-incremental-search-backward
-      bindkey -e
-      # Navigate words with ctrl+arrow keys
-      bindkey '^[Oc' forward-word                                     #
-      bindkey '^[Od' backward-word                                    #
-      bindkey '^[[1;5D' backward-word                                 #
-      bindkey '^[[1;5C' forward-word                                  #
-      bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
-      bindkey '^[[Z' undo                                             # Shift+tab undo last action
-      bindkey "\e[3~" delete-char                                     # bind delete to delete
+    initContent = lib.mkMerge [
+      (lib.mkOrder 550 ''
+        # Drop non-existent completion paths to avoid stale compdump errors.
+        typeset -a _fpath_clean
+        typeset _p
+        for _p in $fpath; do
+          [[ -d "$_p" ]] && _fpath_clean+=("$_p")
+        done
+        fpath=($_fpath_clean)
+        unset _fpath_clean _p
+
+        typeset _dump
+        for _dump in "$HOME"/.zcompdump*; do
+          [[ -f "$_dump" ]] || continue
+          if command grep -q '^/.nix-profile/share/zsh/vendor-completions$' "$_dump"; then
+            rm -f "$_dump"
+          fi
+        done
+        unset _dump
+      '')
+      (lib.mkOrder 1000 ''
+        #bindkey '^R' history-incremental-search-backward
+        bindkey -e
+        # Navigate words with ctrl+arrow keys
+        bindkey '^[Oc' forward-word                                     #
+        bindkey '^[Od' backward-word                                    #
+        bindkey '^[[1;5D' backward-word                                 #
+        bindkey '^[[1;5C' forward-word                                  #
+        bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+        bindkey '^[[Z' undo                                             # Shift+tab undo last action
+        bindkey "\e[3~" delete-char                                     # bind delete to delete
 
 
-      # Add post hook to brew upgrade
-      function brew() {
-        case $1 in
-          upgrade)
-            shift
-            command brew upgrade "$@" && /Users/rengers/scripts/check_brew_updates.sh
-            ;;
-          *)
-            command brew "$@";;
-        esac
-      };
+        # Add post hook to brew upgrade
+        function brew() {
+          case $1 in
+            upgrade)
+              shift
+              command brew upgrade "$@" && /Users/rengers/scripts/check_brew_updates.sh
+              ;;
+            *)
+              command brew "$@";;
+          esac
+        };
 
-      # Load rust
-      if [ -f $HOME/.cargo/env ]; then
-        source $HOME/.cargo/env
-      fi
+        # Load rust
+        if [ -f $HOME/.cargo/env ]; then
+          source $HOME/.cargo/env
+        fi
 
-      export LANG=en_US.UTF-8
-      export LC_ALL=en_US.UTF-8
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
 
-      # pyenv — must come after PATH is set, before direnv hook
-      export PYENV_ROOT="$HOME/.pyenv"
-      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-      eval "$(pyenv init -)"
-      eval "$(pyenv virtualenv-init -)" 2>/dev/null
+        # pyenv — must come after PATH is set, before direnv hook
+        export PYENV_ROOT="$HOME/.pyenv"
+        [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)" 2>/dev/null
 
-      # rbenv
-      eval "$(rbenv init - zsh)"
+        # rbenv
+        eval "$(rbenv init - zsh)"
 
-      eval "$(direnv hook zsh)"
-      source ${pkgs.fzf}/share/fzf/completion.zsh
-      #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
-    '';
+        eval "$(direnv hook zsh)"
+        source ${pkgs.fzf}/share/fzf/completion.zsh
+        #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
+      '')
+    ];
       #bindkey '^I' history-incremental-search-forward
 
       #oh-my-zsh.enable = true;
@@ -523,6 +546,7 @@ in
       "$HOME/_scripts"
       "/Library/Frameworks/GStreamer.framework/Versions/Current/bin"
       "$HOME/.toolbox/bin"
+      "$HOME/go/bin"
   ];
 
   # Let Home Manager install and manage itself.
