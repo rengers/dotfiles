@@ -177,13 +177,28 @@ in
         # pyenv — must come after PATH is set, before direnv hook
         export PYENV_ROOT="$HOME/.pyenv"
         [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)" 2>/dev/null
+        if command -v pyenv >/dev/null 2>&1; then
+          eval "$(pyenv init -)"
+          eval "$(pyenv virtualenv-init -)" 2>/dev/null
+        fi
 
         # rbenv
-        eval "$(rbenv init - zsh)"
+        if command -v rbenv >/dev/null 2>&1; then
+          eval "$(rbenv init - zsh)"
+        fi
 
-        eval "$(direnv hook zsh)"
+        # Cache ssh-add output so starship doesn't run it twice per prompt.
+        typeset -gx SSH_ADD_LIST=""
+        function _update_ssh_add_list() {
+          if [[ -n "$SSH_AUTH_SOCK" ]]; then
+            SSH_ADD_LIST="$(ssh-add -l 2>/dev/null)"
+          else
+            SSH_ADD_LIST=""
+          fi
+        }
+        autoload -Uz add-zsh-hook
+        add-zsh-hook precmd _update_ssh_add_list
+
         source ${pkgs.fzf}/share/fzf/completion.zsh
         #source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       '')
@@ -277,7 +292,7 @@ in
       custom.ssh_no_keys = {
         disabled = false;
           description = "SSH missing keys";
-          when = "ssh-add -l | grep -q 'no identities'";
+          when = "test -n \"$SSH_ADD_LIST\" && printf '%s' \"$SSH_ADD_LIST\" | grep -q 'no identities'";
           command = "echo 🚫";
           format = "[$symbol$output]($style)";
           shell = ["bash" "--noprofile" "--norc"];
@@ -288,8 +303,8 @@ in
       custom.ssh_keys = {
         disabled = false;
         description = "SSH key count";
-        when = "ssh-add -l | grep -v -q 'no identities'";
-        command = "ssh-add -l | grep -v 'no identities' | wc -l";
+        when = "test -n \"$SSH_ADD_LIST\" && ! printf '%s' \"$SSH_ADD_LIST\" | grep -q 'no identities'";
+        command = "printf '%s' \"$SSH_ADD_LIST\" | grep -v 'no identities' | wc -l";
         format = "[$symbol$output]($style)";
         shell = ["bash" "--noprofile" "--norc"];
         symbol = "🔑";
